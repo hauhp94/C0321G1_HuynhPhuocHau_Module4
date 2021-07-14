@@ -22,6 +22,7 @@ public class DictionaryController {
     public String convert(@RequestParam("key") String key, Model model) {
         String result = dictionaryService.translate(key);
         model.addAttribute("result", result);
+        model.addAttribute("key", key);
         return "index";
     }
 }

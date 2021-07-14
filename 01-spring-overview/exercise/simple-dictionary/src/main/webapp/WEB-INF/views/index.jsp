@@ -14,10 +14,10 @@
 <h2>Vietnamese Dictionary</h2>
 
 <form method="post" action="/translate">
-    <input type="text" name="key" placeholder="Enter your word: "/><br>
+    <input type="text" name="key" placeholder="Enter your word: " value="${key}"/><br>
     (one,two,three,four)
     <input type="submit" id="submit" value="Search"/>
-    <h1>hết quả: ${result}</h1>
+    <h1>Kết quả: ${result}</h1>
 </form>
 </body>
 </html>
