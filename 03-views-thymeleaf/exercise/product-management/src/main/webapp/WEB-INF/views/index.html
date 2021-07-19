@@ -17,7 +17,7 @@
 
 <table id = "products">
     <thead>
-    <tr>
+    <tr><th>STT</th>
         <th>Name</th>
         <th>Price</th>
         <th>Description</th>
@@ -28,6 +28,7 @@
     </thead>
     <tbody>
     <tr th:each="row,rowStat : ${products}">
+        <td th:text="${rowStat.count}"></td>
         <td th:text="${row.getName()}"></td>
         <td th:text="${row.getPrice()}"></td>
         <td th:text="${row.getDescription()}"></td>

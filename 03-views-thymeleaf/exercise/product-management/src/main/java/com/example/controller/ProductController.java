@@ -27,9 +27,10 @@ public class ProductController {
         return "/create";
     }
     @PostMapping("/save")
-    public String save(Product product) {
+    public String save(Product product,RedirectAttributes redirect) {
         product.setId((int) (Math.random() * 10000));
         productService.save(product);
+        redirect.addFlashAttribute("success", "Saved product successfully!");
         return "redirect:/product";
     }
 
@@ -39,8 +40,9 @@ public class ProductController {
         return "/edit";
     }
     @PostMapping("/update")
-    public String update(Product product) {
+    public String update(Product product,RedirectAttributes redirect) {
         productService.update(product.getId(), product);
+        redirect.addFlashAttribute("success", "Update product successfully!");
         return "redirect:/product";
     }
 
