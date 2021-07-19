@@ -45,7 +45,6 @@ public class ProductService implements IProductService {
         List<Product> productListByName = new ArrayList<>();
 
         for (Product product : productList) {
-//            Matcher matcher = Pattern.compile(name).matcher(product.getName());
             if (product.getName().contains(name)) {
                 productListByName.add(product);
             }
