@@ -32,6 +32,7 @@
       <change beforePath="$PROJECT_DIR$/../../exercise/product-management/build/libs/product-management-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/build/libs/product-management-1.0-SNAPSHOT.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../exercise/product-management/src/main/java/com/example/model/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/src/main/java/com/example/model/repository/ProductRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../exercise/product-management/src/main/java/com/example/model/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/src/main/java/com/example/model/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/product-management/src/main/webapp/WEB-INF/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/src/main/webapp/WEB-INF/views/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

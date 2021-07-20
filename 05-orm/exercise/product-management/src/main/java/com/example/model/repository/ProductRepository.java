@@ -43,23 +43,64 @@ public class ProductRepository implements IProductRepository{
     @Override
     public Product findById(int id) {
         return BaseRepository.entityManager.find(Product.class, id);
+//       return BaseRepository.entityManager.createQuery(
+//                "select s from product s where s.id= :id", Product.class).setParameter("id",id).getSingleResult();
     }
 
     @Override
     public List<Product> findByName(String name) {
 
+//        return BaseRepository.entityManager.createQuery(
+//                "select s from product s where s.name like concat('%','"+name+"','%')", Product.class).getResultList();
         return BaseRepository.entityManager.createQuery(
-                "select s from product s where s.name like concat('%','"+name+"','%')", Product.class).getResultList();
+                "select s from product s where s.name like concat('%',:name,'%')", Product.class).setParameter("name",name).getResultList();
 
     }
 
     @Override
     public void update(int id, Product product) {
-
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = BaseRepository.sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            Product newProduct = findById(product.getId());
+            newProduct.setName(product.getName());
+            newProduct.setPrice(product.getPrice());
+            newProduct.setDescription(product.getDescription());
+            newProduct.setManufacturer(product.getManufacturer());
+            session.saveOrUpdate(newProduct);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 
     @Override
     public void remove(int id) {
-
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = BaseRepository.sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.remove(findById(id));
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 }

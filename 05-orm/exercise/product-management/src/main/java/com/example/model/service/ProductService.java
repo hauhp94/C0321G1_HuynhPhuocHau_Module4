@@ -48,11 +48,11 @@ IProductRepository productRepository;
 
     @Override
     public void update(int id, Product product) {
-//        products.put(id, product);
+        productRepository.update(id,product);
     }
 
     @Override
     public void remove(int id) {
-//        products.remove(id);
+        productRepository.remove(id);
     }
 }
