@@ -19,22 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6d21ffd-b771-4876-a287-9362ccae979c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../exercise/product-management/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../exercise/product-management/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../exercise/product-management/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../exercise/product-management/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../exercise/product-management/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/.gradle/6.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../exercise/product-management/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../exercise/product-management/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../exercise/product-management/build/classes/java/main/com/example/model/repository/ProductRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/build/classes/java/main/com/example/model/repository/ProductRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../exercise/product-management/build/classes/java/main/com/example/model/service/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/build/classes/java/main/com/example/model/service/ProductService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../exercise/product-management/build/libs/product-management-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/build/libs/product-management-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../exercise/product-management/src/main/java/com/example/model/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/src/main/java/com/example/model/repository/ProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../exercise/product-management/src/main/java/com/example/model/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/src/main/java/com/example/model/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../exercise/product-management/src/main/webapp/WEB-INF/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/product-management/src/main/webapp/WEB-INF/views/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="c6d21ffd-b771-4876-a287-9362ccae979c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -12,19 +12,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 @Service
 public class ProductService implements IProductService {
-@Autowired
-IProductRepository productRepository;
+    @Autowired
+    IProductRepository productRepository;
 
     @Override
     public List<Product> findAll() {
-       return productRepository.findAll();
+        return productRepository.findAll();
     }
 
     @Override
     public void save(Product product) {
-      this.productRepository.save(product);
+        this.productRepository.save(product);
     }
 
     @Override
@@ -34,21 +35,12 @@ IProductRepository productRepository;
 
     @Override
     public List<Product> findByName(String name) {
-//        List<Product> productList = this.findAll();
-//        List<Product> productListByName = new ArrayList<>();
-//
-//        for (Product product : productList) {
-//            if (product.getName().contains(name)) {
-//                productListByName.add(product);
-//            }
-//        }
-//        return productListByName;
         return productRepository.findByName(name);
     }
 
     @Override
     public void update(int id, Product product) {
-        productRepository.update(id,product);
+        productRepository.update(id, product);
     }
 
     @Override

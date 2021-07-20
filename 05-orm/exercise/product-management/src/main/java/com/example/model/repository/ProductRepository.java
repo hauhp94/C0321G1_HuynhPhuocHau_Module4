@@ -4,12 +4,10 @@ import com.example.model.bean.Product;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
-
-//import javax.persistence.EntityTransaction;
-import javax.persistence.EntityTransaction;
 import java.util.List;
+
 @Repository
-public class ProductRepository implements IProductRepository{
+public class ProductRepository implements IProductRepository {
     @Override
     public List<Product> findAll() {
         return BaseRepository.entityManager.createQuery(
@@ -29,12 +27,12 @@ public class ProductRepository implements IProductRepository{
             transaction = session.beginTransaction();
             session.save(product);
             transaction.commit();
-        }catch (Exception e){
-            if(transaction != null){
+        } catch (Exception e) {
+            if (transaction != null) {
                 transaction.rollback();
             }
-        }finally {
-            if (session != null){
+        } finally {
+            if (session != null) {
                 session.close();
             }
         }
@@ -49,12 +47,9 @@ public class ProductRepository implements IProductRepository{
 
     @Override
     public List<Product> findByName(String name) {
-
-//        return BaseRepository.entityManager.createQuery(
-//                "select s from product s where s.name like concat('%','"+name+"','%')", Product.class).getResultList();
         return BaseRepository.entityManager.createQuery(
-                "select s from product s where s.name like concat('%',:name,'%')", Product.class).setParameter("name",name).getResultList();
-
+                "select s from product s where s.name like concat('%',:name,'%')", Product.class)
+                .setParameter("name", name).getResultList();
     }
 
     @Override
