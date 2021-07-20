@@ -34,15 +34,16 @@ IProductRepository productRepository;
 
     @Override
     public List<Product> findByName(String name) {
-        List<Product> productList = this.findAll();
-        List<Product> productListByName = new ArrayList<>();
-
-        for (Product product : productList) {
-            if (product.getName().contains(name)) {
-                productListByName.add(product);
-            }
-        }
-        return productListByName;
+//        List<Product> productList = this.findAll();
+//        List<Product> productListByName = new ArrayList<>();
+//
+//        for (Product product : productList) {
+//            if (product.getName().contains(name)) {
+//                productListByName.add(product);
+//            }
+//        }
+//        return productListByName;
+        return productRepository.findByName(name);
     }
 
     @Override

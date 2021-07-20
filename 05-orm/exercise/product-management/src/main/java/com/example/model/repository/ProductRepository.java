@@ -47,7 +47,10 @@ public class ProductRepository implements IProductRepository{
 
     @Override
     public List<Product> findByName(String name) {
-        return null;
+
+        return BaseRepository.entityManager.createQuery(
+                "select s from product s where s.name like concat('%','"+name+"','%')", Product.class).getResultList();
+
     }
 
     @Override
