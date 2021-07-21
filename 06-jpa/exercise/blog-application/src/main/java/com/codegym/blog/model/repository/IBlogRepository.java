@@ -7,9 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.concurrent.BlockingDeque;
-public interface IBlogRepository extends JpaRepository<Blog,Integer> {
+
+public interface IBlogRepository extends JpaRepository<Blog, Integer> {
 
     Blog findByNameContaining(String name);
 
-    Blog findById(Long id);
+    Blog findAllById(int id);
+
 }

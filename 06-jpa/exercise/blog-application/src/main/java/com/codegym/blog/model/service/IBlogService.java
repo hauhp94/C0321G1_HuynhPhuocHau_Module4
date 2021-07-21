@@ -11,10 +11,10 @@ public interface IBlogService {
 
     void save(Blog blog);
 
-    void remove(Long id);
+    void remove(int id);
 
     Blog findByNameContaining(String name);
 
-    Blog findById(Long id);
+    Blog findById(int id);
 
 }

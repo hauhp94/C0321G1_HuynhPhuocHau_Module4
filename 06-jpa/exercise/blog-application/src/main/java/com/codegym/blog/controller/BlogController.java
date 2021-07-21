@@ -47,7 +47,7 @@ public class BlogController {
     }
 
     @GetMapping("/edit-blog/{id}")
-    public ModelAndView showEditForm(@PathVariable Long id) {
+    public ModelAndView showEditForm(@PathVariable int id) {
         Blog blog = blogService.findById(id);
         if (blog != null) {
             ModelAndView modelAndView = new ModelAndView("/blog/edit");
@@ -70,7 +70,7 @@ public class BlogController {
     }
 
     @GetMapping("/delete-blog/{id}")
-    public ModelAndView showDeleteForm(@PathVariable Long id) {
+    public ModelAndView showDeleteForm(@PathVariable int id) {
         Blog blog = blogService.findById(id);
         if (blog != null) {
             ModelAndView modelAndView = new ModelAndView("/blog/delete");

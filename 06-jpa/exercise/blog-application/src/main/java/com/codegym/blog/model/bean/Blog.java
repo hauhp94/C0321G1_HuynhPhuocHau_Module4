@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String name;
     @Column(columnDefinition = "longtext")
     private String content;
@@ -15,17 +15,17 @@ public class Blog {
     public Blog() {
     }
 
-    public Blog(Long id, String name, String content) {
+    public Blog(int id, String name, String content) {
         this.id = id;
         this.name = name;
         this.content = content;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
