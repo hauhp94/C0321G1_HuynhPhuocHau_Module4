@@ -4,14 +4,19 @@ import com.example.model.bean.Product;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
+
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
 public class ProductRepository implements IProductRepository {
     @Override
     public List<Product> findAll() {
-        return BaseRepository.entityManager.createQuery(
-                "select s from product s", Product.class).getResultList();
+//        return BaseRepository.entityManager.createQuery(
+//                "select s from product s", Product.class).getResultList();
+        String queryStr = "SELECT p FROM product AS p";
+        TypedQuery<Product> query = BaseRepository.entityManager.createQuery(queryStr, Product.class);
+        return query.getResultList();
     }
 
     @Override
