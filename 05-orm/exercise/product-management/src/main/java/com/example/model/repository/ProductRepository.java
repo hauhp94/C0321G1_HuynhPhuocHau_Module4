@@ -59,12 +59,12 @@ public class ProductRepository implements IProductRepository {
         try {
             session = BaseRepository.sessionFactory.openSession();
             transaction = session.beginTransaction();
-            Product newProduct = findById(product.getId());
-            newProduct.setName(product.getName());
-            newProduct.setPrice(product.getPrice());
-            newProduct.setDescription(product.getDescription());
-            newProduct.setManufacturer(product.getManufacturer());
-            session.saveOrUpdate(newProduct);
+            Product productUpdate = findById(product.getId());
+            productUpdate.setName(product.getName());
+            productUpdate.setPrice(product.getPrice());
+            productUpdate.setDescription(product.getDescription());
+            productUpdate.setManufacturer(product.getManufacturer());
+            session.saveOrUpdate(productUpdate);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
