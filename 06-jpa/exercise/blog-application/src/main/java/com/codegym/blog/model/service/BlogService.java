@@ -40,6 +40,6 @@ public class BlogService implements IBlogService {
 
     @Override
     public Blog findById(int id) {
-        return blogRepository.findAllById(id);
+        return blogRepository.findById(id);
     }
 }

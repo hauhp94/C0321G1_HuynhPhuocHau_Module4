@@ -19,7 +19,25 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6d21ffd-b771-4876-a287-9362ccae979c" name="Default Changelist" comment="" />
+    <list default="true" id="c6d21ffd-b771-4876-a287-9362ccae979c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../17-spring-boot/pratice/demo-spring-boot/src/main/java/com/example/demo/controller/GreetingController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../17-spring-boot/pratice/demo-spring-boot/src/main/resources/templates/greeting.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/customer-management.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/customer-management.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/build/classes/java/main/com/codegym/blog/model/repository/IBlogRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/build/classes/java/main/com/codegym/blog/model/repository/IBlogRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/build/classes/java/main/com/codegym/blog/model/service/BlogService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/build/classes/java/main/com/codegym/blog/model/service/BlogService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/build/libs/blog-application-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/build/libs/blog-application-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/src/main/java/com/codegym/blog/model/repository/IBlogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/src/main/java/com/codegym/blog/model/repository/IBlogRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/src/main/java/com/codegym/blog/model/service/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../06-jpa/exercise/blog-application/src/main/java/com/codegym/blog/model/service/BlogService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,7 +81,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../exercise/product-management" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -159,6 +177,7 @@
       <option name="presentableId" value="Default" />
       <updated>1626753329452</updated>
       <workItem from="1626753335593" duration="5055000" />
+      <workItem from="1626922131373" duration="1250000" />
     </task>
     <servers />
   </component>
@@ -175,6 +194,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="249" y="96" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1626771465990">

@@ -12,6 +12,6 @@ public interface IBlogRepository extends JpaRepository<Blog, Integer> {
 
     Blog findByNameContaining(String name);
 
-    Blog findAllById(int id);
+    Blog findById(int id);
 
 }
