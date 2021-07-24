@@ -1,6 +1,8 @@
 package com.example.provincemanagement.model.bean;
 
 
+import org.springframework.web.bind.annotation.Mapping;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class Province {
 
     private String name;
 
-    @OneToMany(targetEntity = Customer.class)
+    @OneToMany(mappedBy = "id")
     private List<Customer> customers;
 
     public Province() {

@@ -19,6 +19,7 @@
         <td>BlogName</td>
         <td>Content</td>
         <td>Category</td>
+        <td>Date create</td>
         <td>Edit</td>
         <td>Delete</td>
         <td>view</td>
@@ -28,6 +29,7 @@
             <td th:text="${blog.blogName}"></td>
             <td th:text="${blog.content}"></td>
             <td th:text="${blog.category.categoryName}"></td>
+            <td th:text="${blog.dateCreate}"></td>
             <td><a th:href="@{/update-blog/__${blog.id}__}">edit</a></td>
             <td><a th:href="@{/delete-blog/__${blog.id}__}">delete</a></td>
             <td><a th:href="@{/view-blog/__${blog.id}__}">view</a></td>

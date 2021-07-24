@@ -18,6 +18,8 @@ public class Blog {
     @ManyToOne(targetEntity = Category.class)
     @JoinColumn(name = "category_id",referencedColumnName = "id")
     private Category category;
+    @Column(name = "create_date", columnDefinition = "DATE")
+    private String dateCreate;
 
     public Blog() {
     }
@@ -59,4 +61,11 @@ public class Blog {
         this.category = category;
     }
 
+    public String getDateCreate() {
+        return dateCreate;
+    }
+
+    public void setDateCreate(String dateCreate) {
+        this.dateCreate = dateCreate;
+    }
 }

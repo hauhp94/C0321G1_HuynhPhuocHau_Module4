@@ -10,6 +10,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import java.util.Optional;
 
 public interface BlogRepository extends PagingAndSortingRepository<Blog, Long> {
+    Page<Blog> findAllByOrderByDateCreate(Pageable pageable);
     Iterable<Blog> findAllByCategory(Category category);
 
     Page<Blog> findAllByBlogNameContaining(String blogName, Pageable pageable);

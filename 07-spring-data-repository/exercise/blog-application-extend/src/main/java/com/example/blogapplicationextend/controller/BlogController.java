@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Controller
@@ -28,7 +30,7 @@ public class BlogController {
     }
 
     @GetMapping("/blogs")
-    public ModelAndView ShowListBlog(@RequestParam("s") Optional<String> s,@PageableDefault(value = 3) Pageable pageable) {
+    public ModelAndView showBlogList(@RequestParam("s") Optional<String> s, @PageableDefault(value = 3) Pageable pageable) {
         Page<Blog> blogs;
         if (s.isPresent()) {
             blogs = blogService.findAllByBlogNameContaining(s.get(), pageable);
@@ -50,8 +52,10 @@ public class BlogController {
 
     @PostMapping("/create-blog")
     public ModelAndView createBlog(@ModelAttribute("blog") Blog blog) {
-        blogService.save(blog);
+        blog.setDateCreate(LocalDate.now().toString());
+//        blog.setDateCreate(LocalDate.now().plusYears(1).toString());
 
+        blogService.save(blog);
         ModelAndView modelAndView = new ModelAndView("/blog/create");
         modelAndView.addObject("blog", blog);
         modelAndView.addObject("message", "Blog created compliment");
