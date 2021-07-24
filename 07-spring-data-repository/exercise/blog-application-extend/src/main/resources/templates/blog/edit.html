@@ -35,10 +35,16 @@
             </td>
         </tr>
         <tr>
+            <td>Date Create:</td>
+            <td><input type="text" th:field="*{dateCreate}"></td>
+        </tr>
+        <tr>
             <td></td>
             <td><input type="submit" value="Update customer"></td>
         </tr>
     </table>
 </form>
+<div id="my-footer" th:insert="~{/layout::footer}">
+</div>
 </body>
 </html>

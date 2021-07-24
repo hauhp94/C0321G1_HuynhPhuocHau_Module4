@@ -6,6 +6,9 @@ import com.example.blogapplicationextend.model.bean.Category;
 import com.example.blogapplicationextend.model.service.BlogService;
 import com.example.blogapplicationextend.model.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -90,17 +93,17 @@ public class CategoryController {
     }
 
     @GetMapping("/view-category/{id}")
-    public ModelAndView detailInformationCategory(@PathVariable Long id) {
+    public ModelAndView detailInformationCategory(@PathVariable Long id,@PageableDefault(value = 3) Pageable pageable) {
         Category category = categoryService.findById(id);
 
         if (category == null) {
             return new ModelAndView("/error.404");
         }
 
-        Iterable<Blog> blogs = blogService.findAllByCategory(category);
+        Page<Blog> blogs = blogService.findAllByCategory(category,pageable);
 
-        ModelAndView modelAndView = new ModelAndView("/category/view");
-        modelAndView.addObject("category", category);
+        ModelAndView modelAndView = new ModelAndView("/blog/list");
+//        modelAndView.addObject("category", category);
         modelAndView.addObject("blogs", blogs);
         return modelAndView;
     }

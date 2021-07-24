@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -37,12 +38,15 @@ public class BlogController {
         } else {
             blogs = blogService.findAll(pageable);
         }
+        List<Category> categories = (List<Category>) categoryService.findAll();
+
+
 
         ModelAndView modelAndView = new ModelAndView("/blog/list");
+        modelAndView.addObject("categories",categories);
         modelAndView.addObject("blogs", blogs);
         return modelAndView;
     }
-
     @GetMapping("/create-blog")
     public ModelAndView showCreateForm() {
         ModelAndView modelAndView = new ModelAndView("/blog/create");
