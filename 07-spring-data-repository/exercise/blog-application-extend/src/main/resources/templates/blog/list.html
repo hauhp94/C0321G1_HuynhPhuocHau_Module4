@@ -6,9 +6,9 @@
 </head>
 <body>
 <h1>Blogs</h1>
-<form>
+<form action="/blogs" method="get">
     Search by blogName:
-    <input type="text" name="s"/>
+    <input type="text" name="keyWord"/>
     <input type="submit" value="Search"/>
 </form>
 <p>
@@ -17,16 +17,17 @@
 
 <table border="1">
     <tr>
-        <td>BlogName</td>
-        <td>Content</td>
-        <td>Category</td>
-        <td>Date create</td>
-        <td>Edit</td>
-        <td>Delete</td>
-        <td>view</td>
+        <th>Index</th>
+        <th>BlogName</th>
+        <th>Content</th>
+        <th>Category</th>
+        <th>Date create</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>view</th>
     </tr>
-    <th:block th:each="blog : ${blogs}">
-        <tr>
+        <tr th:each="blog,status : ${blogs}">
+            <td th:text="${status.count}"></td>
             <td th:text="${blog.blogName}"></td>
             <td th:text="${blog.content}"></td>
             <td th:text="${blog.category.categoryName}"></td>
@@ -35,12 +36,12 @@
             <td><a th:href="@{/delete-blog/__${blog.id}__}">delete</a></td>
             <td><a th:href="@{/view-blog/__${blog.id}__}">view</a></td>
         </tr>
-    </th:block>
+
 </table>
 <div>
-    <a th:href="@{'/blogs'(page=${blogs.number - 1})}" th:if="${blogs.hasPrevious()}">Previous</a>
+    <a th:href="@{'/blogs'(page=${blogs.number - 1},keyWord=${keyWord})}" th:if="${blogs.hasPrevious()}">Previous</a>
     <span th:text="${blogs.number + 1}"></span>/<span th:text="${blogs.totalPages}"></span>
-    <a th:href="@{'/blogs'(page=${blogs.number + 1})}" th:if="${blogs.hasNext()}">Next</a>
+    <a th:href="@{'/blogs'(page=${blogs.number + 1},keyWord=${keyWord})}" th:if="${blogs.hasNext()}">Next</a>
 </div>
 <div id="my-footer" th:insert="~{/layout::footer}">
 </div>

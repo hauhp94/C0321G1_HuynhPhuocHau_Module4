@@ -7,6 +7,7 @@ import com.example.blogapplicationextend.model.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -31,22 +32,21 @@ public class BlogController {
     }
 
     @GetMapping("/blogs")
-    public ModelAndView showBlogList(@RequestParam("s") Optional<String> s, @PageableDefault(value = 3) Pageable pageable) {
+    public ModelAndView showBlogList(@RequestParam("keyWord") Optional<String> keyWord, @PageableDefault(value = 3) Pageable pageable) {
         Page<Blog> blogs;
-        if (s.isPresent()) {
-            blogs = blogService.findAllByBlogNameContaining(s.get(), pageable);
+        String key = "";
+        if (keyWord.isPresent()) {
+            blogs = blogService.findAllByBlogNameContaining(keyWord.get(), pageable);
+            key = keyWord.get();
         } else {
             blogs = blogService.findAll(pageable);
         }
-        List<Category> categories = (List<Category>) categoryService.findAll();
-
-
-
         ModelAndView modelAndView = new ModelAndView("/blog/list");
-        modelAndView.addObject("categories",categories);
+        modelAndView.addObject("keyWord", key);
         modelAndView.addObject("blogs", blogs);
         return modelAndView;
     }
+
     @GetMapping("/create-blog")
     public ModelAndView showCreateForm() {
         ModelAndView modelAndView = new ModelAndView("/blog/create");
@@ -120,4 +120,5 @@ public class BlogController {
         modelAndView.addObject("blog", blog);
         return modelAndView;
     }
+
 }

@@ -9,13 +9,15 @@
 <h1>Category list</h1>
 <table border="1">
     <tr>
+        <th>Index</th>
         <th>CategoryName</th>
         <th>Edit</th>
         <th>Delete</th>
         <th>View</th>
     </tr>
-    <th:block th:each="category : ${categories}">
+    <th:block th:each="category,status : ${categories}">
         <tr>
+            <td th:text="${status.count}"></td>
             <td th:text="${category.categoryName}"></td>
             <td><a th:href="@{/edit-category/__${category.id}__ }">edit</a></td>
             <td><a th:href="@{/delete-category/__${category.id}__ }">delete</a></td>
