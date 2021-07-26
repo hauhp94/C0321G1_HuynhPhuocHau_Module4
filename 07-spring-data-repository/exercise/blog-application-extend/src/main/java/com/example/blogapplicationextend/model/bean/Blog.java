@@ -15,7 +15,7 @@ public class Blog {
     private String blogName;
     private String content;
 
-    @ManyToOne(targetEntity = Category.class)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id",referencedColumnName = "id")
     private Category category;
     @Column(name = "create_date", columnDefinition = "DATE")

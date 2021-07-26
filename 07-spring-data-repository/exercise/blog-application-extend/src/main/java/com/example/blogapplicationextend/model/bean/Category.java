@@ -13,7 +13,7 @@ public class Category {
     private Long id;
     private String categoryName;
 
-    @OneToMany(mappedBy = "id",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
     private List<Blog> blogs;
 
 

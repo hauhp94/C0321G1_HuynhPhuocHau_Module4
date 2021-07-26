@@ -18,9 +18,10 @@ public class PhoneNumber implements Validator {
         this.number = number;
     }
 
+
     @Override
     public boolean supports(Class<?> clazz) {
-        return PhoneNumber.class.isAssignableFrom(clazz);
+        return false;
     }
 
     @Override
@@ -28,7 +29,7 @@ public class PhoneNumber implements Validator {
 
         PhoneNumber phoneNumber = (PhoneNumber) target;
         String number = phoneNumber.getNumber();
-        ValidationUtils.rejectIfEmpty(errors, "number", "number.empty","ko de trong");
+        ValidationUtils.rejectIfEmpty(errors, "number", "number.empty");
         if (number.length()>11 || number.length()<10){
             errors.rejectValue("number", "number.length","loi 10-11 so");
         }

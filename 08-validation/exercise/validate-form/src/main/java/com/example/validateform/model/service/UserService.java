@@ -1,6 +1,6 @@
 package com.example.validateform.model.service;
 
-import com.example.validateform.model.bean.User;
+import com.example.validateform.model.entity.User;
 
 import java.util.List;
 
