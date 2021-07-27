@@ -1,6 +1,7 @@
 package com.example.controller;
 
 
+import com.example.exception.DuplicateEmailException;
 import com.example.model.entity.Customer;
 import com.example.model.entity.Province;
 import com.example.model.service.CustomerService;
@@ -50,9 +51,13 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ModelAndView updateCustomer(Customer customer) {
+    public ModelAndView updateCustomer(Customer customer) throws DuplicateEmailException {
         customerService.save(customer);
         return new ModelAndView("redirect:/customers");
+    }
+    @ExceptionHandler(DuplicateEmailException.class)
+    public ModelAndView showInputNotAcceptable() {
+        return new ModelAndView("/customers/inputs-not-acceptable");
     }
 
     private Page<Customer> getPage(Pageable pageInfo) throws Exception {

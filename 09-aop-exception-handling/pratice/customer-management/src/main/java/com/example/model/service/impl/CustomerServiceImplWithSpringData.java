@@ -1,10 +1,12 @@
 package com.example.model.service.impl;
 
 
+import com.example.exception.DuplicateEmailException;
 import com.example.model.entity.Customer;
 import com.example.model.repository.CustomerRepository;
 import com.example.model.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -54,8 +56,12 @@ public class CustomerServiceImplWithSpringData implements CustomerService {
     }
 
     @Override
-    public Customer save(Customer customer) {
-        return customerRepository.save(customer);
+    public Customer save(Customer customer) throws DuplicateEmailException {
+        try {
+            return customerRepository.save(customer);
+        } catch (DataIntegrityViolationException e) {
+            throw new DuplicateEmailException();
+        }
     }
 
     @Override
