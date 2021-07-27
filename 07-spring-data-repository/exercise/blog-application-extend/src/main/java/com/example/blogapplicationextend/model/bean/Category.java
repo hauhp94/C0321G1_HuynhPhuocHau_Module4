@@ -1,9 +1,16 @@
 package com.example.blogapplicationextend.model.bean;
 
+
+
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Setter
+@Getter
 @Table(name = "categorys")
 public class Category {
 
@@ -13,39 +20,10 @@ public class Category {
     private Long id;
     private String categoryName;
 
-    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category",cascade = CascadeType.REMOVE)
     private List<Blog> blogs;
 
 
-    public Category() {
-    }
 
-    public Category(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public List<Blog> getBlogs() {
-        return blogs;
-    }
-
-    public void setBlogs(List<Blog> blogs) {
-        this.blogs = blogs;
-    }
 
 }
