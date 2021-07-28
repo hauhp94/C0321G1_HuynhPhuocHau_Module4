@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -14,8 +14,12 @@ public class BookAspect {
 
     public int numberOfVisit=0;
 
-    @Pointcut("within(com.example.controller.BookController*)")
-    public void addMethodPointCut(){};
+    @Pointcut("execution(* com.example.controller.BookController.borrowBook(..))")
+    public void borrow() {
+    }
+    @Pointcut("execution(* com.example.controller.BookController.giveBackBook(..))")
+    public void pay() {
+    }
 
     @Pointcut("within(com.example.controller.BookController*)")
     public void numberOfVisit(){}
@@ -30,11 +34,14 @@ public class BookAspect {
 
     }
 
-    @After("addMethodPointCut()")
-    public void afterCallMethod(JoinPoint joinPoint){
-        System.err.println("After method in bookController Class name: "+ joinPoint.getSignature().getDeclaringTypeName()+
-                "- method name: "+ joinPoint.getSignature().getName()+
-                "- Time: "+ LocalDate.now());
-
+    @After("borrow()")
+    public void resultBorrow(JoinPoint joinPoint) {
+        System.err.println("book plus 1 " + joinPoint.getSignature().getName());
+        System.err.println("time :" + LocalDate.now());
+    }
+    @After("pay()")
+    public void resultPay(JoinPoint joinPoint) {
+        System.err.println("book minus 1 : " + joinPoint.getSignature().getName());
+        System.err.println("time :" + LocalDate.now());
     }
 }
