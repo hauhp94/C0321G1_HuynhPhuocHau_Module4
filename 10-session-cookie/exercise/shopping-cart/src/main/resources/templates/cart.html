@@ -28,9 +28,9 @@
             <a th:text="${product.getKey().name}" th:href="@{/view/__${product.getKey().id}__}"></a>
             </td>
             <td>
-                <a id="decrease_button" th:href="@{/minus/__${product.getKey().id}__(action='show')}" th:text="${'-'}"></a>
+                <a class="btn-success btn" id="decrease_button" th:href="@{/minus/__${product.getKey().id}__(action='show')}" th:text="${'-'}"></a>
                 <span th:text="${product.getValue()}"></span>
-                <a id="increase_button" th:href="@{/add/__${product.getKey().id}__(action='show')}"
+                <a class="btn-success btn" id="increase_button" th:href="@{/add/__${product.getKey().id}__(action='show')}"
                    th:text="${'+'}"></a>
             </td>
             <td th:text="${product.getKey().price}"></td>
