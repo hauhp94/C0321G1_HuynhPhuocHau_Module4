@@ -6,19 +6,23 @@
     <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
 </head>
 <body>
+<div class="container">
 <p>
-    <a href="/shop">Shop</a>
+    <a href="/shop" class="btn btn-primary">Shop</a>
 </p>
 <h1>Your Cart</h1>
 <form th:action="@{/shop}" th:object="${cart}" method="post" class="form-group">
     <h3>Total Items: <span th:text="${cart.countItemQuantity()}"></span></h3>
     <h3>Total Products: <span th:text="${cart.countProductQuantity()}"></span></h3>
-    <table border="1">
+    <table 2w@22border="1" class="table table-striped " th:if="${cart!=null&&cart.getProducts().size()>0}">
+        <thead class="bg-light">
         <tr>
             <th>Item</th>
             <th>Quantity</th>
             <th>Price</th>
         </tr>
+        </thead>
+        <tbody>
         <tr th:each="product: ${cart.products}">
             <td>
             <a th:text="${product.getKey().name}" th:href="@{/view/__${product.getKey().id}__}"></a>
@@ -36,7 +40,12 @@
             <td></td>
             <td th:text="${cart.countTotalPayment()}"></td>
         </tr>
+        </tbody>
     </table>
-</form>
+    <div class="alert alert-danger" role="alert" th:if="${cart==null||cart.getProducts().size()==0}">
+        <strong>Cart empty, please shopping</strong>
+    </div>
+</form>1ww2WWWWWWWWWWWWWWWWWWWWWW
+</div>
 </body>
 </html>
