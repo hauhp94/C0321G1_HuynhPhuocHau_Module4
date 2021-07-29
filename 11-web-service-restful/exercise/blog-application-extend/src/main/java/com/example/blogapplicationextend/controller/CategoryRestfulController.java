@@ -51,13 +51,13 @@ public class CategoryRestfulController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+    public ResponseEntity createCategory(@RequestBody Category category) {
         categoryService.save(category);
-        return new ResponseEntity<>(category,HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Category> updateCategory(@PathVariable Long id,@RequestBody Category category) {
+    public ResponseEntity updateCategory(@PathVariable Long id,@RequestBody Category category) {
         Category currentCategory = categoryService.findById(id);
         if(currentCategory==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -65,16 +65,16 @@ public class CategoryRestfulController {
         currentCategory.setBlogs(category.getBlogs());
         currentCategory.setCategoryName(category.getCategoryName());
         categoryService.save(currentCategory);
-        return new ResponseEntity<>(currentCategory,HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Category> deleteCategory(@PathVariable Long id) {
+    public ResponseEntity deleteCategory(@PathVariable Long id) {
         Category currentCategory = categoryService.findById(id);
         if(currentCategory==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         categoryService.remove(id);
-        return new ResponseEntity<>(currentCategory,HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
