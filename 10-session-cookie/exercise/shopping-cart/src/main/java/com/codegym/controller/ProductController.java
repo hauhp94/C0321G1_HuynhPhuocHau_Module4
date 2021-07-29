@@ -24,12 +24,18 @@ public class ProductController {
         return new Cart();
     }
 
+    @GetMapping("clear")
+    public String clearCart(@SessionAttribute("cart") Cart cart) {
+        cart.clearCart();
+        return "cart";
+    }
+
     @GetMapping(value = {"/shop", ""})
-    public ModelAndView showShop(@CookieValue(value = "idHistory",defaultValue = "-1")Long idHistory, Model model) {
-            if(idHistory != -1){
-                model.addAttribute("historyProduct",productService.findById(idHistory).get());
-            }
-            ModelAndView modelAndView = new ModelAndView("/shop");
+    public ModelAndView showShop(@CookieValue(value = "idHistory", defaultValue = "-1") Long idHistory, Model model) {
+        if (idHistory != -1) {
+            model.addAttribute("historyProduct", productService.findById(idHistory).get());
+        }
+        ModelAndView modelAndView = new ModelAndView("/shop");
         modelAndView.addObject("products", productService.findAll());
         return modelAndView;
     }
@@ -64,8 +70,8 @@ public class ProductController {
 
     @GetMapping("/view/{id}")
     public ModelAndView viewProduct(@PathVariable long id, HttpServletResponse response) {
-        Cookie cookie = new Cookie("idHistory",id+"");
-        cookie.setMaxAge(60*60);
+        Cookie cookie = new Cookie("idHistory", id + "");
+        cookie.setMaxAge(60 * 60);
         cookie.setPath("/");
         response.addCookie(cookie);
         ModelAndView modelAndView = new ModelAndView("view");

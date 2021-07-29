@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Cart {
+    public void clearCart(){
+        this.products.clear();
+    }
     private Map<Product,Integer> products = new HashMap<>();
 
     public Cart() {
