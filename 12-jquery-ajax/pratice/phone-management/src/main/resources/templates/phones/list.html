@@ -9,7 +9,8 @@
     <script src="/jquery/popper.min.js"></script>
     <script src="/bootstrap4/js/bootstrap.js"></script>
     <script type="text/javascript">
-        function addNewSmartPhone() {
+
+    function addNewSmartPhone() {
             //lay du lieu
             let producer = $('#producer').val();
             let model = $('#model').val();
@@ -85,36 +86,48 @@
                 //chặn sự kiện mặc định của thẻ
                 event.preventDefault();
             });
-
             //sư kiện nào thực hiện Ajax
+            $('#editSmartphoneButton').click(function (event) {
+                alert("click ok");
+                //lay du lieu
+                // let a = $('editSmartphone');
+                // let smartphoneId = a.val();
+                // alert("a: "+ a);
+                // alert("id "+ smartphoneId)
+                let id=$('#idSmartphoneEdit').val();
+                let producer = $('#producerUpdate').val();
+                let model = $('#modelUpdate').val();
+                let price = $('#priceUpdate').val();
+                let smartphoneUpdated = {
+                    producer: producer,
+                    model: model,
+                    price: price
+                };
+                alert(smartphoneUpdated.model+smartphoneUpdated.producer+smartphoneUpdated.price);
+                // alert("id : "+smartphoneId);
+                // goi ajax
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    type: "PUT",
+                    data: JSON.stringify(smartphoneUpdated),
+                    //tên API
+                    url: "/smartphones/"+id,
+                    //xử lý khi thành công
+                    success: function () {
+                        alert("thanh cong")
+                    }
+
+
+                });
+                //chặn sự kiện mặc định của thẻ
+                event.preventDefault();
+            });
 
         })
-        $('#editSmartphoneButton').click(function (event) {
-            //lay du lieu
-            let a = $(this);
-            let smartphoneId = a.attr("href");
-            let producer = $('#producerUpdate').val();
-            let model = $('#modelUpdate').val();
-            let price = $('#priceUpdate').val();
-            let smartphoneUpdated = {
-                producer: producer,
-                model: model,
-                price: price
-            };
-            // goi ajax
-            $.ajax({
-                type: "PUT",
-                //tên API
-                url: `/smartphones/${smartphoneId}`,
-                data: JSON.stringify(smartphoneUpdated),
-                //xử lý khi thành công
-                success: function (data) {
-                    console.log("update thanh cong")
-                }
-            });
-            //chặn sự kiện mặc định của thẻ
-            event.preventDefault();
-        });
+
     </script>
 </head>
 <body>
@@ -153,7 +166,11 @@
             <td th:text="${smartphone.model}"></td>
             <td th:text="${smartphone.price}"></td>
             <td><a class="deleteSmartphone" th:href="${smartphone.getId()}">Delete</a></td>
-            <td><a class="editSmartphone" th:href="${smartphone.getId()}" data-toggle="modal" data-target="#exampleModal">Edit</a></td>
+            <td>
+                    <button type="button" class="btn btn-primary"  th:value="${smartphone.getId()}" data-toggle="modal" data-target="#exampleModal">
+                        Edit
+                    </button>
+            </td>
         </tr>
     </th:block>
     <!-- Button trigger modal -->
@@ -166,12 +183,14 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Update product</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
+                    <p>id</p>
+                    <input type="number" id="idSmartphoneEdit">
                     <p>producer: </p>
                     <input type="text" id="producerUpdate">
                     <p>model: </p>
@@ -187,6 +206,7 @@
         </div>
     </div>
 </table>
+<button type="button" id="testbtn">test</button>
 
 </body>
 </html>
