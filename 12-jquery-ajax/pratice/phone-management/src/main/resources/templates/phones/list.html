@@ -47,6 +47,7 @@
                 success: function (data) {
                     // hien thi danh sach o day
                     let content = '    <tr>\n' +
+                        '        <td>STT</td>\n' +
                         '        <td>Producer</td>\n' +
                         '        <td>Model</td>\n' +
                         '        <td>Price</td>\n' +
@@ -129,29 +130,31 @@
     </script>
 </head>
 <body>
-<form id="add-smartphone">
+<div class="container">
+<form id="add-smartphone" class="form-text">
     <table>
         <tr>
             <td>Producer:</td>
-            <td><input type="text" id="producer" placeholder="producer"></td>
+            <td><input type="text" id="producer" placeholder="producer" class="form-control"></td>
         </tr>
         <tr>
             <td>Model:</td>
-            <td><input type="text" id="model" placeholder="model"></td>
+            <td><input type="text" id="model" placeholder="model" class="form-control"></td>
         </tr>
         <tr>
             <td>Price:</td>
-            <td><input type="text" id="price" placeholder="price"></td>
+            <td><input type="text" id="price" placeholder="price" class="form-control"></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Add" onclick="addNewSmartPhone()"></td>
+            <td><input type="submit" value="Add" onclick="addNewSmartPhone()" class="btn btn-primary"></td>
         </tr>
     </table>
 </form>
 <h1>Smartphone List</h1>
 <table id="smartphoneList" class="table table-striped">
     <tr>
+        <td>STT</td>
         <td>ID</td>
         <td>Producer</td>
         <td>Model</td>
@@ -159,8 +162,9 @@
         <td>Delete</td>
         <td>Edit</td>
     </tr>
-    <th:block th:each="smartphone: ${smartphones}">
+    <th:block th:each="smartphone,status: ${smartphones}">
         <tr>
+            <td th:text="${status.count}"></td>
             <td th:text="${smartphone.id}"></td>
             <td th:text="${smartphone.producer}"></td>
             <td th:text="${smartphone.model}"></td>
@@ -207,5 +211,6 @@
         </div>
     </div>
 </table>
+</div>
 </body>
 </html>
