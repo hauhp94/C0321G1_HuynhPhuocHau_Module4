@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show list Blog</title>
+</head>
+<body>
+<h1>Blogs</h1>
+<form action="/blogs/list" method="get">
+    Search by blogName:
+    <input type="text" name="keyWord"/>
+    <input type="submit" value="Search"/>
+</form>
+<p>
+    <a href="/blogs/create">Create new blogs</a>
+</p>
+
+<table border="1">
+    <tr>
+        <th>Index</th>
+        <th>BlogName</th>
+        <th>Content</th>
+        <th>Category</th>
+        <th>Date create</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>view</th>
+    </tr>
+        <tr th:each="blog,status : ${blogs}">
+            <td th:text="${status.count}"></td>
+            <td th:text="${blog.blogName}"></td>
+            <td th:text="${blog.content}"></td>
+            <td th:text="${blog.category.categoryName}"></td>
+            <td th:text="${blog.dateCreate}"></td>
+            <td><a th:href="@{/blogs/update/__${blog.id}__}">edit</a></td>
+            <td><a th:href="@{/blogs/delete/__${blog.id}__}">delete</a></td>
+            <td><a th:href="@{/blogs/view/__${blog.id}__}">view</a></td>
+        </tr>
+
+</table>
+<div>
+    <a th:href="@{'/blogs/list'(page=${blogs.number - 1},keyWord=${keyWord})}" th:if="${blogs.hasPrevious()}">Previous</a>
+    <span th:text="${blogs.number + 1}"></span>/<span th:text="${blogs.totalPages}"></span>
+    <a th:href="@{'/blogs/list'(page=${blogs.number + 1},keyWord=${keyWord})}" th:if="${blogs.hasNext()}">Next</a>
+</div>
+<div id="my-footer" th:insert="~{/layout::footer}">
+</div>
+</body>
+</html>

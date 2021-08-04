@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head th:fragment="head(screenName)">
+    <meta charset="UTF-8">
+    <title th:text="${screenName} + ' Header Common'"></title>
+</head>
+
+<body>
+
+<div th:fragment="footer">
+    <h2>This is content of footer.</h2>
+    <a href="/blogs/list">List Blog</a>
+    <a href="/categorys/list">List Category</a>
+</div>
+
+
+</body>
+</html>

@@ -14,7 +14,7 @@ import java.util.Locale;
 
 @Configuration
 public class AppConfiguration implements WebMvcConfigurer {
-
+    // nơi chứa các message tương ứng theo từng ngôn ngữ
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
@@ -23,6 +23,7 @@ public class AppConfiguration implements WebMvcConfigurer {
         return messageSource;
     }
 
+    // bắt request và phân biệt cài nào là request thay đổi ngôn ngữ
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
@@ -30,6 +31,7 @@ public class AppConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(interceptor);
     }
 
+    //khai báo ngôn ngữ mặc định và nơi lưu
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
