@@ -6,6 +6,9 @@ import com.example.model.entity.*;
 import com.example.model.repository.RentTypeRepository;
 import com.example.model.repository.ServiceRepository;
 import com.example.model.repository.ServiceTypeRepository;
+import com.example.model.service.RentTypeService;
+import com.example.model.service.ServiceService;
+import com.example.model.service.ServiceTypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,18 +28,18 @@ import java.util.List;
 public class ServiceController {
 
     @Autowired
-    ServiceRepository serviceRepository;
+    ServiceService serviceService;
 
     @Autowired
-    ServiceTypeRepository serviceTypeRepository;
+    ServiceTypeService serviceTypeService;
 
     @Autowired
-    RentTypeRepository rentTypeRepository;
+    RentTypeService rentTypeService;
 
     @GetMapping("/create")
     public String createCustomer(Model model) {
-        List<ServiceType> serviceTypeList = serviceTypeRepository.findAll();
-        List<RentType> rentTypeList = rentTypeRepository.findAll();
+        List<ServiceType> serviceTypeList = serviceTypeService.findAll();
+        List<RentType> rentTypeList = rentTypeService.findAll();
         model.addAttribute("serviceTypeList", serviceTypeList);
         model.addAttribute("rentTypeList", rentTypeList);
         model.addAttribute("serviceDto", new ServiceDto());
@@ -48,15 +51,15 @@ public class ServiceController {
                               BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         new ServiceDto().validate(serviceDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
-            List<ServiceType> serviceTypeList = serviceTypeRepository.findAll();
-            List<RentType> rentTypeList = rentTypeRepository.findAll();
+            List<ServiceType> serviceTypeList = serviceTypeService.findAll();
+            List<RentType> rentTypeList = rentTypeService.findAll();
             model.addAttribute("serviceTypeList", serviceTypeList);
             model.addAttribute("rentTypeList", rentTypeList);
             return "/furama/service/create";
         } else {
             Service service = new Service();
             BeanUtils.copyProperties(serviceDto, service);
-            serviceRepository.save(service);
+            serviceService.save(service);
             redirectAttributes.addFlashAttribute("message", "create success, service: " + service.getServiceName());
             return "redirect:/service/create";
         }

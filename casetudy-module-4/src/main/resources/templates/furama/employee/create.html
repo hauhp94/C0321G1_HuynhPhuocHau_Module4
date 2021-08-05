@@ -1,0 +1,121 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Add Employee</title>
+</head>
+<body>
+<div>
+    <div th:insert="~{/layout::head}"></div>
+    <div th:insert="~{/layout::navbar}"></div>
+    <div class="row container-fluid">
+        <div th:insert="~{/layout::sidebar}" class="col-lg-2 h-100"></div>
+        <!--nội dung-->
+        <div class="align-content-center col-lg-10 ">
+            <h2>Add new employee</h2>
+            <form th:action="@{/employee/create}" th:object="${employeeDto}" method="post">
+                    <table class="table table-striped border-dark">
+                        <tr>
+                            <td>Tên nhân viên:</td>
+                            <td><input type="text" th:field="*{employeeName}" class="form-control">
+                                <small th:if="${#fields.hasErrors('employeeName')}" th:errors="*{employeeName}"
+                                       style="color: red"></small></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày sinh:</td>
+                            <td><input type="date"
+                                       min="1920-01-01" max="2030-12-31" th:field="*{employeeBirthday}"  class="form-control">
+                                <small th:if="${#fields.hasErrors('employeeBirthday')}" th:errors="*{employeeBirthday}"
+                                       style="color: red"></small></td>
+                        </tr>
+
+                        <tr>
+                            <td>Số CMND:</td>
+                            <td>
+                                <input type="text" th:field="*{employeeIdCard}"  class="form-control">
+                                <small th:if="${#fields.hasErrors('employeeIdCard')}" th:errors="*{employeeIdCard}"
+                                       style="color: red"></small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mức lương:</td>
+                            <td>
+                                <input type="number" step="any" th:field="*{employeeSalary}"  class="form-control">
+                                <small th:if="${#fields.hasErrors('employeeSalary')}" th:errors="*{employeeSalary}"
+                                       style="color: red"></small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Số điện thoại:</td>
+                            <td>
+                                <input type="text" th:field="*{employeePhone}"  class="form-control">
+                                <small th:if="${#fields.hasErrors('employeePhone')}" th:errors="*{employeePhone}"
+                                       style="color: red"></small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td>
+                                <input type="text" th:field="*{employeeEmail}"  class="form-control">
+                                <small th:if="${#fields.hasErrors('employeeEmail')}" th:errors="*{employeeEmail}"
+                                       style="color: red"></small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ:</td>
+                            <td><input type="text" th:field="*{employeeAddress}"  class="form-control">
+                                <small th:if="${#fields.hasErrors('employeeAddress')}" th:errors="*{employeeAddress}"
+                                       style="color: red"></small></td>
+                        </tr>
+                        <tr>
+                            <td><label for="viTri">Vị trí:</label></td>
+                            <td>
+                                <select th:field="*{position}" class="form-control" id="viTri">
+                                    <option th:each="item:${positionList}" th:text="${item.name}"
+                                            th:value="${item.id}"></option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><label for="trinhDo">Trình độ:</label></td>
+                            <td>
+                                <select th:field="*{educationDegree}" class="form-control" id="trinhDo">
+                                    <option th:each="item:${educationDegreeList}" th:text="${item.name}"
+                                            th:value="${item.id}"></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="boPhan">Bộ phận:</label></td>
+                            <td>
+                                <select th:field="*{division}" class="form-control" id="boPhan">
+                                    <option th:each="item:${divisionList}" th:text="${item.name}"
+                                            th:value="${item.id}"></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Username:</td>
+                            <td>
+                                <select th:field="*{appUser}" class="form-control" >
+                                    <option th:each="item:${appUserList}" th:text="${item.username}"
+                                            th:value="${item.id}"></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit" class="btn btn-success">Save</button>
+                            </td>
+                        </tr>
+                    </table>
+            </form>
+        </div>
+    </div>
+</div>
+<!--<h1 th:text="${message}"></h1>-->
+<!-- Footer -->
+<div th:insert="~{/layout::footer}">
+</div>
+<h1 th:text="${message}"></h1>
+</body>
+</html>

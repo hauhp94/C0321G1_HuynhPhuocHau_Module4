@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.util.Set;
 @Getter
@@ -26,7 +27,7 @@ public class EmployeeDto implements Validator {
     private String employeeBirthday;
     @NotBlank
     private String employeeIdCard;
-    @NotBlank
+    @Min(1)
     private double employeeSalary;
     @NotBlank
     private String employeePhone;
@@ -34,7 +35,6 @@ public class EmployeeDto implements Validator {
     private String employeeEmail;
     @NotBlank
     private String employeeAddress;
-    @NotBlank
     private Position position;
     private EducationDegree educationDegree;
     private Division division;
@@ -54,4 +54,5 @@ public class EmployeeDto implements Validator {
         }
 
     }
+
 }

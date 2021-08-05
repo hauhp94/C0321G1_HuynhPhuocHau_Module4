@@ -1,14 +1,10 @@
 package com.example.controller;
 
 import com.example.dto.CustomerDto;
-import com.example.model.entity.Customer;
-import com.example.model.entity.CustomerType;
-import com.example.model.repository.AppUserRepository;
-import com.example.model.repository.DivisionRepository;
-import com.example.model.repository.EducationDegreeRepository;
-import com.example.model.repository.PositionRepository;
-import com.example.model.service.CustomerService;
-import com.example.model.service.CustomerTypeService;
+import com.example.dto.EmployeeDto;
+import com.example.model.entity.*;
+import com.example.model.repository.*;
+import com.example.model.service.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,39 +21,53 @@ import javax.validation.Valid;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
     @Autowired
-    PositionRepository positionRepository;
+    EmployeeService employeeService;
+    @Autowired
+    PositionService positionService;
 
     @Autowired
-    DivisionRepository divisionRepository;
+    DivisionService divisionService;
     @Autowired
-    EducationDegreeRepository educationDegreeRepository;
+    EducationDegreeService educationDegreeService;
     @Autowired
-    AppUserRepository appUserRepository;
+    AppUserService appUserService;
+
     @GetMapping("/create")
     public String createEmployeePage(Model model) {
-        List<CustomerType> customerTypeList = customerTypeService.findAll();
-        model.addAttribute("customerTypeList", customerTypeList);
-        model.addAttribute("customerDto", new CustomerDto());
-        return "/furama/customer/create";
+        this.getListSecondary(model);
+        model.addAttribute("employeeDto", new EmployeeDto());
+        return "/furama/employee/create";
+    }
+
+    private void getListSecondary(Model model) {
+        List<Position> positionList = positionService.findAll();
+        model.addAttribute("positionList", positionList);
+        List<Division> divisionList = divisionService.findAll();
+        model.addAttribute("divisionList", divisionList);
+        List<EducationDegree> educationDegreeList = educationDegreeService.findAll();
+        model.addAttribute("educationDegreeList", educationDegreeList);
+        List<AppUser> appUserList = appUserService.findAll();
+        model.addAttribute("appUserList", appUserList);
     }
 
     @PostMapping("/create")
-    public String saveCustomer(@Valid @ModelAttribute CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
-        new CustomerDto().validate(customerDto, bindingResult);
+    public String saveCustomer(@Valid @ModelAttribute EmployeeDto employeeDto, BindingResult bindingResult,
+                               RedirectAttributes redirectAttributes, Model model) {
+        new EmployeeDto().validate(employeeDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
-            List<CustomerType> customerTypeList = customerTypeService.findAll();
-            model.addAttribute("customerTypeList", customerTypeList);
-            return "/furama/customer/create";
+            this.getListSecondary(model);
+            return "/furama/employee/create";
         } else {
-            Customer customer = new Customer();
-            BeanUtils.copyProperties(customerDto, customer);
-            customerService.save(customer);
-            redirectAttributes.addFlashAttribute("message", "create success, customer: " + customer.getCustomerName());
-            return "redirect:/customer/list";
+            Employee employee = new Employee();
+            BeanUtils.copyProperties(employeeDto, employee);
+            employeeService.save(employee);
+            redirectAttributes.addFlashAttribute("message", "create success, employee: " + employee.getEmployeeName());
+            return "redirect:/employee/list";
         }
 
 
@@ -65,47 +75,46 @@ public class EmployeeController {
 
     @GetMapping("/list")
     public String showCustomerList(@RequestParam("keyWord") Optional<String> keyWord, @PageableDefault(value = 5) Pageable pageable, Model model) {
-        Page<Customer> customers;
+        Page<Employee> employees;
         String key = "";
         if (keyWord.isPresent()) {
-            customers = customerService.findByName(keyWord.get(), pageable);
+            employees = employeeService.findByName(keyWord.get(), pageable);
             key = keyWord.get();
         } else {
-            customers = customerService.findAll(pageable);
+            employees = employeeService.findAll(pageable);
         }
 
-        model.addAttribute("customerList", customers);
+        model.addAttribute("employeeList", employees);
         model.addAttribute("keyWord", key);
-        return "/furama/customer/list";
+        return "/furama/employee/list";
     }
 
     @PostMapping("/delete")
-    public String deleteCustomer(@RequestParam int idCustomerDelete, RedirectAttributes redirectAttributes) throws SQLException {
-        customerService.remove(idCustomerDelete);
+    public String deleteEmployee(@RequestParam int idEmployeeDelete, RedirectAttributes redirectAttributes) throws SQLException {
+        employeeService.remove(idEmployeeDelete);
         redirectAttributes.addFlashAttribute("message", "delete success");
-        return "redirect:/customer/list";
+        return "redirect:/employee/list";
     }
 
     @PostMapping("/edit")
-    public String editCustomer(@Valid @ModelAttribute CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws SQLException {
-        new CustomerDto().validate(customerDto, bindingResult);
+    public String editCustomer(@Valid @ModelAttribute EmployeeDto employeeDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws SQLException {
+        new EmployeeDto().validate(employeeDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
-            List<CustomerType> customerTypeList = customerTypeService.findAll();
-            model.addAttribute("customerTypeList", customerTypeList);
-            return "/furama/customer/edit";
+            this.getListSecondary(model);
+            return "/furama/employee/edit";
         } else {
-            Customer customer = new Customer();
-            BeanUtils.copyProperties(customerDto, customer);
-            customerService.save(customer);
-            redirectAttributes.addFlashAttribute("message", "update success, customer: " + customer.getCustomerName());
-            return "redirect:/customer/list";
+            Employee employee = new Employee();
+            BeanUtils.copyProperties(employeeDto, employee);
+            employeeService.save(employee);
+            redirectAttributes.addFlashAttribute("message", "update success, employee: " + employee.getEmployeeName());
+            return "redirect:/employee/list";
         }
     }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView showEditPage(@PathVariable int id, Model model) throws SQLException {
-        model.addAttribute("customerTypeList", customerTypeService.findAll());
-        ModelAndView modelAndView = new ModelAndView("furama/customer/edit", "customerDto", customerService.findById(id));
-        return modelAndView;
+    public String showEditPage(@PathVariable int id, Model model) throws SQLException {
+        this.getListSecondary(model);
+        model.addAttribute("employeeDto", employeeService.findById(id));
+        return "furama/employee/edit";
     }
 }

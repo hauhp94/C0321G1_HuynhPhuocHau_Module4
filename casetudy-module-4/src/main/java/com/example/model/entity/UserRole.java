@@ -3,6 +3,7 @@ package com.example.model.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 
@@ -22,12 +23,10 @@ public class UserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+//    @PrimaryKeyJoinColumn
     @ManyToOne(targetEntity = AppUser.class)
-    @JoinColumn(name = "username", referencedColumnName = "username")
+    @JoinColumn(name = "username", referencedColumnName = "id")
     private AppUser appUser;
-
-
 
 
     @ManyToOne(targetEntity = AppRole.class)

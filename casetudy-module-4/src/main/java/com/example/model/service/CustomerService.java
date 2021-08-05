@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface CustomerService  {
     Page<Customer> findAll(Pageable pageable);
+    List<Customer> findAll();
+
 
     void save(Customer customer);
 

@@ -6,6 +6,8 @@ import com.example.model.service.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceServiceImpl implements ServiceService {
     @Autowired
@@ -15,5 +17,10 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public void save(com.example.model.entity.Service service) {
         serviceRepository.save(service);
+    }
+
+    @Override
+    public List<com.example.model.entity.Service> findAll() {
+        return serviceRepository.findAll();
     }
 }
