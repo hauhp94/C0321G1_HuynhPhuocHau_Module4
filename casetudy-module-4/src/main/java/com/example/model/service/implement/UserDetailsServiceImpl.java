@@ -2,8 +2,8 @@ package com.example.model.service.implement;
 
 import com.example.model.entity.AppUser;
 import com.example.model.entity.UserRole;
-import com.example.model.service.AppUserRepository;
-import com.example.model.service.UserRoleRepository;
+import com.example.model.repository.AppUserRepository;
+import com.example.model.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

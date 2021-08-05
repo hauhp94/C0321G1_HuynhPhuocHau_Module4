@@ -3,6 +3,10 @@ package com.example.controller;
 import com.example.dto.CustomerDto;
 import com.example.model.entity.Customer;
 import com.example.model.entity.CustomerType;
+import com.example.model.repository.AppUserRepository;
+import com.example.model.repository.DivisionRepository;
+import com.example.model.repository.EducationDegreeRepository;
+import com.example.model.repository.PositionRepository;
 import com.example.model.service.CustomerService;
 import com.example.model.service.CustomerTypeService;
 import org.springframework.beans.BeanUtils;
@@ -21,18 +25,20 @@ import javax.validation.Valid;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-
 @Controller
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/employee")
+public class EmployeeController {
     @Autowired
-    CustomerTypeService customerTypeService;
+    PositionRepository positionRepository;
 
     @Autowired
-    CustomerService customerService;
-
+    DivisionRepository divisionRepository;
+    @Autowired
+    EducationDegreeRepository educationDegreeRepository;
+    @Autowired
+    AppUserRepository appUserRepository;
     @GetMapping("/create")
-    public String createCustomer(Model model) {
+    public String createEmployeePage(Model model) {
         List<CustomerType> customerTypeList = customerTypeService.findAll();
         model.addAttribute("customerTypeList", customerTypeList);
         model.addAttribute("customerDto", new CustomerDto());
@@ -102,5 +108,4 @@ public class CustomerController {
         ModelAndView modelAndView = new ModelAndView("furama/customer/edit", "customerDto", customerService.findById(id));
         return modelAndView;
     }
-
 }

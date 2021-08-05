@@ -1,24 +1,34 @@
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Add Customer</title>
+    <meta charset="UTF-8">
+    <title>Home</title>
 </head>
 <body>
-<div>
-    <div th:insert="~{/layout::head}"></div>
-    <div th:insert="~{/layout::navbar}"></div>
-    <div class="row container-fluid">
-        <div th:insert="~{/layout::sidebar}" class="col-lg-2 h-100"></div>
+<div th:insert="~{/layout::head}"></div>
+<div th:insert="~{/layout::navbar}"></div>
+<div class="row container-fluid">
+    <div th:insert="~{/layout::sidebar}" class="col-lg-2 h-100"></div>
+    <!--    Nội dung-->
+    <div class=" h-100 col-lg-10">
         <!--nội dung-->
         <div class="align-content-center col-lg-10 ">
-            <h2>Add new customer</h2>
-            <form th:action="@{/customer/create}" th:object="${customerDto}" method="post">
+            <h2>Edit customer</h2>
+            <form th:action="@{/customer/edit}" th:object="${customerDto}" method="post">
                 <table class="table table-striped border-dark form-group">
+                    <tr>
+                        <td>ID:</td>
+                        <td>
+                            <input type="text" th:field="*{customerId}" required class="form-control" readonly/>
+                        </td>
+                    </tr>
                     <tr>
                         <td>Tên khách hàng:</td>
                         <td>
-                            <input type="text" th:field="*{customerName}" class="form-control"/>
+                            <input type="text" th:field="*{customerName}" required class="form-control"/>
                             <small th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"
                                    style="color: red"></small>
+
                         </td>
 
                     </tr>
@@ -34,7 +44,8 @@
                     <tr>
                         <td>Mã khách hàng:</td>
                         <td>
-                            <input type="text" th:field="*{customerCode}" class="form-control">
+                            <input type="text" th:field="*{customerCode}"
+                                   class="form-control">
                             <small th:if="${#fields.hasErrors('customerCode')}" th:errors="*{customerCode}"
                                    style="color: red"></small>
 
@@ -42,8 +53,8 @@
                     </tr>
                     <tr>
                         <td>Ngày sinh:</td>
-                        <td>
-                            <input type="date" th:field="*{customerBirthday}" class="form-control">
+                        <td><input type="date" th:field="*{customerBirthday}"
+                                   class="form-control">
                         <small th:if="${#fields.hasErrors('customerBirthday')}" th:errors="*{customerBirthday}"
                                style="color: red"></small>
                         </td>
@@ -63,7 +74,6 @@
                                    class="form-control">
                             <small th:if="${#fields.hasErrors('customerIdCard')}" th:errors="*{customerIdCard}"
                                    style="color: red"></small>
-
 
                         </td>
                     </tr>
@@ -89,8 +99,7 @@
                     </tr>
                     <tr>
                         <td>Địa chỉ:</td>
-                        <td>
-                            <input type="text" th:field="*{customerAddress}"
+                        <td><input type="text" th:field="*{customerAddress}"
                                    class="form-control">
                         <small th:if="${#fields.hasErrors('customerAddress')}" th:errors="*{customerAddress}"
                                style="color: red"></small>
@@ -98,11 +107,8 @@
 
                     </tr>
                     <tr>
-                        <td>
-                            <button class="btn btn-success" type="submit">Save</button>
-                        </td>
-                        <td>
-                            <button class="btn btn-secondary" type="reset">Reset</button>
+                        <td colspan="2">
+                            <button class="btn btn-success" type="submit">Update</button>
                         </td>
                     </tr>
                 </table>
@@ -110,10 +116,8 @@
         </div>
     </div>
 </div>
-<!--<h1 th:text="${message}"></h1>-->
-<!-- Footer -->
+</div>
 <div th:insert="~{/layout::footer}">
 </div>
-<h1 th:text="${message}"></h1>
 </body>
 </html>

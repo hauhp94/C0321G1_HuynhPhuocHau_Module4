@@ -4,6 +4,8 @@ import com.example.model.entity.Customer;
 import com.example.model.repository.CustomerRepository;
 import com.example.model.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -15,8 +17,8 @@ public class CustomerServiceImpl implements CustomerService {
     CustomerRepository customerRepository;
 
     @Override
-    public List<Customer> findAll() {
-        return customerRepository.findAll();
+    public Page<Customer> findAll(Pageable pageable) {
+        return customerRepository.findAll(pageable);
     }
 
     @Override
@@ -26,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void remove(int id) throws SQLException {
-
+        customerRepository.deleteById(id);
     }
 
     @Override
@@ -36,12 +38,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer findById(int id) {
-        return null;
+        return customerRepository.findById(id).get();
     }
 
     @Override
-    public List<Customer> findByName(String name) {
-        return null;
+    public Page<Customer> findByName(String name,Pageable pageable) {
+        return customerRepository.findAllByCustomerNameContaining(name,pageable);
     }
 
     @Override

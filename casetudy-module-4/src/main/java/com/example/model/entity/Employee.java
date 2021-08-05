@@ -17,14 +17,14 @@ import java.util.Set;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int employee_id;
-    private String employee_name;
-    private LocalDate employee_birthday;
-    private String employee_id_card;
-    private double employee_salary;
-    private String employee_phone;
-    private String employee_email;
-    private String employee_address;
+    private int employeeId;
+    private String employeeName;
+    private String employeeBirthday;
+    private String employeeIdCard;
+    private double employeeSalary;
+    private String employeePhone;
+    private String employeeEmail;
+    private String employeeAddress;
     @ManyToOne(targetEntity = Position.class)
     @JoinColumn(name = "position_id", referencedColumnName = "id")
     private Position position;
@@ -39,4 +39,22 @@ public class Employee {
     private AppUser appUser;
     @OneToMany(mappedBy = "employee")
     private Set<Contract> contracts;
+
+    public Employee(int employeeId, String employeeName, String employeeBirthday,
+                    String employeeIdCard, double employeeSalary, String employeePhone,
+                    String employeeEmail, String employeeAddress, Position position,
+                    EducationDegree educationDegree, Division division, AppUser appUser) {
+        this.employeeId = employeeId;
+        this.employeeName = employeeName;
+        this.employeeBirthday = employeeBirthday;
+        this.employeeIdCard = employeeIdCard;
+        this.employeeSalary = employeeSalary;
+        this.employeePhone = employeePhone;
+        this.employeeEmail = employeeEmail;
+        this.employeeAddress = employeeAddress;
+        this.position = position;
+        this.educationDegree = educationDegree;
+        this.division = division;
+        this.appUser = appUser;
+    }
 }

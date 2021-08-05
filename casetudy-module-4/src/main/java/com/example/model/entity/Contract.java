@@ -17,18 +17,18 @@ public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String contract_start_date;
-    private String contract_end_date;
-    private double contract_deposit;
-    private double contract_total_money;
+    private String contractStartDate;
+    private String contractEndDate;
+    private double contractDeposit;
+    private double contractTotalMoney;
     @ManyToOne(targetEntity = Employee.class)
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    @JoinColumn(name = "employee_id", referencedColumnName = "employeeId")
     private Employee employee;
     @ManyToOne(targetEntity = Customer.class)
-    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+    @JoinColumn(name = "customer_id", referencedColumnName = "customerId")
     private Customer customer;
     @ManyToOne(targetEntity = Service.class)
-    @JoinColumn(name = "service_id", referencedColumnName = "service_id")
+    @JoinColumn(name = "service_id", referencedColumnName = "serviceId")
     private Service service;
     @OneToMany(mappedBy = "contract")
     private Set<ContractDetail> contractDetails;

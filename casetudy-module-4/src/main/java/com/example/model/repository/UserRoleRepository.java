@@ -1,4 +1,4 @@
-package com.example.model.service;
+package com.example.model.repository;
 
 import com.example.model.entity.AppUser;
 import com.example.model.entity.UserRole;

@@ -1,12 +1,14 @@
 package com.example.model.service;
 
 import com.example.model.entity.Customer;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public interface CustomerService  {
-    List<Customer> findAll();
+    Page<Customer> findAll(Pageable pageable);
 
     void save(Customer customer);
 
@@ -16,7 +18,7 @@ public interface CustomerService  {
 
     Customer findById(int id);
 
-    List<Customer> findByName(String name);
+    Page<Customer> findByName(String name,Pageable pageable);
 
     List<Customer> findAllAndService();
 }

@@ -51,8 +51,8 @@
                     Customer
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/customer?action=list">Customer list</a>
-                    <a class="dropdown-item" href="/customer?action=create">Add Customer</a>
+                    <a class="dropdown-item" href="/customer/list">Customer list</a>
+                    <a class="dropdown-item" href="/customer/create">Add Customer</a>
                     <a class="dropdown-item" href="/customer?action=CustomerService">Customer Use Service</a>
                 </div>
             </li>
@@ -90,10 +90,9 @@
 </div>
 
 <div th:fragment="sidebar" class=" bg-light list-group" style="height: auto" >
-    <a href="/employee?action=list" class="list-group-item list-group-item-action list-group-item-primary ">Employee
-        List</a>
-    <a href="/customer?action=list" class="list-group-item list-group-item-action list-group-item-success ">Customer
-        List</a>
+    <a href="/customer/create" class="list-group-item list-group-item-action list-group-item-primary ">Create new customer
+        </a>
+    <a href="/service/create" class="list-group-item list-group-item-action list-group-item-success ">Create service</a>
     <a href="/service?action=list" class="list-group-item list-group-item-action list-group-item-secondary ">Service
         List</a>
     <a href="/contract?action=list" class="list-group-item list-group-item-action list-group-item-secondary ">Contract
