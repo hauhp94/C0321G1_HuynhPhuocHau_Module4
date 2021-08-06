@@ -35,6 +35,9 @@ public class Service {
     public String freeService;
     @OneToMany(mappedBy = "service")
     private Set<Contract> contracts;
+    @Column(columnDefinition = "int default 0")
+    private int isDelete;
+
 
     public Service(int serviceId, String serviceCode, String serviceName,
                    int serviceArea, double serviceCost, int serviceMaxPeople,

@@ -17,7 +17,7 @@
             <div th:if="${message}">
                 <h4 th:text="${message}" style="color: #1e7e34"></h4>
             </div>
-                <table class="table table-striped border-dark">
+                <table class="table table-striped border-dark table-bordered">
                     <tr>
                         <td>Ngày bắt đầu: </td>
                         <td><input type="date"  th:field="*{contractStartDate}"class="form-control">
@@ -75,7 +75,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2"><button class="btn btn-success" type="submit">Save</button> </td>
+                        <td ><button class="btn btn-success" type="submit">Save</button> </td>
+                        <td>
+                            <button class="btn btn-secondary" type="reset">Reset</button>
+                        </td>
                     </tr>
                 </table>
         </form>

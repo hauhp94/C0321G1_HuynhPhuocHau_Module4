@@ -21,6 +21,6 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Override
     public List<com.example.model.entity.Service> findAll() {
-        return serviceRepository.findAll();
+        return serviceRepository.findAllByIsDelete(0);
     }
 }

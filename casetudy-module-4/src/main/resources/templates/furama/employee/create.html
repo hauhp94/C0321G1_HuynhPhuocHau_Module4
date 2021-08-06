@@ -12,7 +12,7 @@
         <div class="align-content-center col-lg-10 ">
             <h2>Add new employee</h2>
             <form th:action="@{/employee/create}" th:object="${employeeDto}" method="post">
-                    <table class="table table-striped border-dark">
+                    <table class="table table-striped border-dark table-bordered">
                         <tr>
                             <td>Tên nhân viên:</td>
                             <td><input type="text" th:field="*{employeeName}" class="form-control">

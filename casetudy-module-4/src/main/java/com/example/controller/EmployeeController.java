@@ -91,8 +91,9 @@ public class EmployeeController {
 
     @PostMapping("/delete")
     public String deleteEmployee(@RequestParam int idEmployeeDelete, RedirectAttributes redirectAttributes) throws SQLException {
+        String name = employeeService.findById(idEmployeeDelete).getEmployeeName();
         employeeService.remove(idEmployeeDelete);
-        redirectAttributes.addFlashAttribute("message", "delete success");
+        redirectAttributes.addFlashAttribute("message", "delete success employee "+ name);
         return "redirect:/employee/list";
     }
 

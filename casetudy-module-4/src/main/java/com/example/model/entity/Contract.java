@@ -32,4 +32,7 @@ public class Contract {
     private Service service;
     @OneToMany(mappedBy = "contract")
     private Set<ContractDetail> contractDetails;
+    @Column(columnDefinition = "int default 0")
+    private int isDelete;
+
 }

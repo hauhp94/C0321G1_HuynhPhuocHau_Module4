@@ -34,6 +34,9 @@ public class Customer {
     private int contractDetailId;
     private int quantity;
     private String attach_service_name;
+    @Column(columnDefinition = "int default 0")
+    private int isDelete;
+
 
     public Customer(int customerId, String customerCode, CustomerType customerType,
                     String customerName, String customerBirthday, int customerGender,

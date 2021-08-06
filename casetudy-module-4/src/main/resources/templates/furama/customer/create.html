@@ -14,7 +14,7 @@
         <div class="align-content-center col-lg-10 ">
             <h2>Add new customer</h2>
             <form th:action="@{/customer/create}" th:object="${customerDto}" method="post">
-                <table class="table table-striped border-dark form-group">
+                <table class="table table-striped border-dark form-group table-bordered">
                     <tr>
                         <td>Tên khách hàng:</td>
                         <td>

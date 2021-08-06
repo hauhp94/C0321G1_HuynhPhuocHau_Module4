@@ -18,12 +18,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Page<Customer> findAll(Pageable pageable) {
-        return customerRepository.findAll(pageable);
+        return customerRepository.findAllByIsDelete(0,pageable);
     }
 
     @Override
     public List<Customer> findAll() {
-        return customerRepository.findAll();
+        return customerRepository.findAllByIsDelete(0);
     }
 
     @Override
@@ -33,7 +33,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void remove(int id) throws SQLException {
-        customerRepository.deleteById(id);
+        Customer customer=customerRepository.findById(id).get();
+        customer.setIsDelete(1);
+        customerRepository.save(customer);
     }
 
     @Override

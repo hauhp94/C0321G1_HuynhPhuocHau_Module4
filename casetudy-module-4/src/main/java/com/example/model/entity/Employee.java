@@ -1,9 +1,6 @@
 package com.example.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -39,6 +36,8 @@ public class Employee {
     private AppUser appUser;
     @OneToMany(mappedBy = "employee")
     private Set<Contract> contracts;
+    @Column(columnDefinition = "int default 0")
+    private int isDelete;
 
     public Employee(int employeeId, String employeeName, String employeeBirthday,
                     String employeeIdCard, double employeeSalary, String employeePhone,

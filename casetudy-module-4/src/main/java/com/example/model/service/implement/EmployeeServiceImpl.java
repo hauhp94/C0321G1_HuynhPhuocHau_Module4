@@ -18,12 +18,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     EmployeeRepository employeeRepository;
     @Override
     public Page<Employee> findAll(Pageable pageable) {
-        return employeeRepository.findAll(pageable);
+        return employeeRepository.findAllByIsDelete(0,pageable);
     }
 
     @Override
     public List<Employee> findAll() {
-        return employeeRepository.findAll();
+        return employeeRepository.findAllByIsDelete(0);
     }
 
     @Override
@@ -34,7 +34,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void remove(int id) throws SQLException {
-        employeeRepository.deleteById(id);
+        Employee employee = employeeRepository.findById(id).get();
+        employee.setIsDelete(1);
+        employeeRepository.save(employee);
     }
 
     @Override

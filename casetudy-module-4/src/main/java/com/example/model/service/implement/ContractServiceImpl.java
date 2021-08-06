@@ -19,6 +19,6 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public List<Contract> findAll() {
-        return contractRepository.findAll();
+        return contractRepository.findAllByIsDelete(0);
     }
 }

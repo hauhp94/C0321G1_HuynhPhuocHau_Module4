@@ -12,12 +12,12 @@
     <!--    Nội dung-->
     <div class=" h-100 col-lg-10">
 
-        <h2>Create Contract</h2>
+        <h2>Create Contract Detail</h2>
         <form th:action="@{/contract-detail/create}" method="post" th:object="${contractDetailDto}">
             <div th:if="${message}">
                 <h4 th:text="${message}" style="color: #1e7e34"></h4>
             </div>
-            <table class="table table-striped border-dark">
+            <table class="table table-striped border-dark table-bordered">
                 <tr>
                     <td>ID Hợp đồng:</td>
                     <td>

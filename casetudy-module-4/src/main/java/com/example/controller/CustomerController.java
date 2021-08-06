@@ -75,8 +75,9 @@ public class CustomerController {
 
     @PostMapping("/delete")
     public String deleteCustomer(@RequestParam int idCustomerDelete, RedirectAttributes redirectAttributes) throws SQLException {
+        String name = customerService.findById(idCustomerDelete).getCustomerName();
         customerService.remove(idCustomerDelete);
-        redirectAttributes.addFlashAttribute("message", "delete success");
+        redirectAttributes.addFlashAttribute("message", "delete success customer "+name);
         return "redirect:/customer/list";
     }
 
