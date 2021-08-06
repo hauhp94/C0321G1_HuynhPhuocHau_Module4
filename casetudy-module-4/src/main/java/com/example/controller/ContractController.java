@@ -64,6 +64,9 @@ public class ContractController {
             Contract contract = new Contract();
             BeanUtils.copyProperties(contractDto, contract);
             contractService.save(contract);
+            Customer customer = contractDto.getCustomer();
+            customer.setServiceId(contractDto.getService().getServiceId());
+            customerService.save(customer);
             redirectAttributes.addFlashAttribute("message", "create success contract start day in " + contract.getContractStartDate());
             return "redirect:/contract/create";
         }

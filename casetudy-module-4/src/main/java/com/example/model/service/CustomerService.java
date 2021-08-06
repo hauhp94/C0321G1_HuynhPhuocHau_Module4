@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface CustomerService  {
     Page<Customer> findAll(Pageable pageable);
+    Page<Customer> findAllCustomerUseService(Pageable pageable);
+
     List<Customer> findAll();
-
-
     void save(Customer customer);
 
     void remove(int id) throws SQLException;

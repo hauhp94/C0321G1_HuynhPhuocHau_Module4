@@ -30,12 +30,17 @@ public class Customer {
     private String customerAddress;
     @OneToMany(mappedBy = "customer")
     private Set<Contract> contracts;
+    @Column(columnDefinition = "int default 0")
     private int serviceId;
+    @Column(columnDefinition = "int default 0")
     private int contractDetailId;
+    @Column(columnDefinition = "int default 0")
     private int quantity;
-    private String attach_service_name;
     @Column(columnDefinition = "int default 0")
     private int isDelete;
+    @Column(columnDefinition = "int default 0")
+    private int contractId;
+    private String attachServiceName;
 
 
     public Customer(int customerId, String customerCode, CustomerType customerType,

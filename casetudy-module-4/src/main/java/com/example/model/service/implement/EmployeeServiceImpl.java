@@ -52,7 +52,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Page<Employee> findByName(String name, Pageable pageable) {
-        return employeeRepository.findAllByEmployeeNameContaining(name,pageable);
+        return employeeRepository.searchByNameOrPhone(name,pageable);
     }
 
     @Override

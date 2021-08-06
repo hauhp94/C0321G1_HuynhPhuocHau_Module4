@@ -22,6 +22,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Page<Customer> findAllCustomerUseService(Pageable pageable) {
+        return customerRepository.findAllByIsDeleteAndServiceIdGreaterThan(0,0,pageable);
+    }
+
+    @Override
     public List<Customer> findAll() {
         return customerRepository.findAllByIsDelete(0);
     }
@@ -50,7 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Page<Customer> findByName(String name,Pageable pageable) {
-        return customerRepository.findAllByCustomerNameContaining(name,pageable);
+        return customerRepository.searchByNameOrPhone(name,pageable);
     }
 
     @Override

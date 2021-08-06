@@ -5,9 +5,11 @@ import com.example.dto.ContractDto;
 import com.example.model.entity.AttachService;
 import com.example.model.entity.Contract;
 import com.example.model.entity.ContractDetail;
+import com.example.model.entity.Customer;
 import com.example.model.service.AttachServiceService;
 import com.example.model.service.ContractDetailService;
 import com.example.model.service.ContractService;
+import com.example.model.service.CustomerService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,8 @@ public class ContractDetailController {
     AttachServiceService attachServiceService;
     @Autowired
     ContractDetailService contractDetailService;
+    @Autowired
+    CustomerService customerService;
 
     @GetMapping("/create")
     public String createContractDetail(Model model) {
@@ -42,13 +46,13 @@ public class ContractDetailController {
     private void getSecondaryList(Model model) {
         List<Contract> contractList = contractService.findAll();
         List<AttachService> attachServiceList = attachServiceService.findAll();
-        model.addAttribute("contractList",contractList);
-        model.addAttribute("attachServiceList",attachServiceList);
+        model.addAttribute("contractList", contractList);
+        model.addAttribute("attachServiceList", attachServiceList);
     }
 
     @PostMapping("/create")
     public String saveContractDetail(@Valid @ModelAttribute ContractDetailDto contractDetailDto,
-                              BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+                                     BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         new ContractDetailDto().validate(contractDetailDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             getSecondaryList(model);
@@ -56,6 +60,11 @@ public class ContractDetailController {
         } else {
             ContractDetail contractDetail = new ContractDetail();
             BeanUtils.copyProperties(contractDetailDto, contractDetail);
+            Customer customer = contractDetail.getContract().getCustomer();
+            customer.setContractDetailId(contractDetail.getId());
+            customer.setAttachServiceName(contractDetail.getAttachService().getName());
+            customer.setQuantity(contractDetail.getQuantity());
+            customerService.save(customer);
             contractDetailService.save(contractDetail);
             redirectAttributes.addFlashAttribute("message", "create success contract detail id: " + contractDetail.getId());
             return "redirect:/contract-detail/create";
