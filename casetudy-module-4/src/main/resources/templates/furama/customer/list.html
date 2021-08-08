@@ -34,7 +34,9 @@
                 <th>Phone number</th>
                 <th>Email</th>
                 <th>Address</th>
-                <th>Action</th>
+                <th>Edit</th>
+                <th>Delete</th>
+
             </tr>
             </thead>
             <tbody>
@@ -54,13 +56,14 @@
                 <td th:text="${customer.customerEmail}"></td>
                 <td th:text="${customer.customerAddress}"></td>
                 <td>
-                    <a th:href="@{edit/{id}(id=${customer.customerId})}"
-                            type="button" class=" btn btn-warning" >
-                        Edit
+                    <a th:href="@{edit/{id}(id=${customer.customerId})}" class="btn-warning btn">
+                        <i class="fas fa-user-edit " title="Edit"></i>
                     </a>
-                    <button type="button" class="deleteCustomer btn btn-danger"
+                </td>
+                <td>
+                    <button type="button" class="deleteCustomer btn-danger btn"
                             th:value="${customer.customerId}" data-toggle="modal" data-target="#exampleModal">
-                        Delete
+                        <i class="fas fa-trash-alt " title="Delete"></i>
                     </button>
                 </td>
             </tr>

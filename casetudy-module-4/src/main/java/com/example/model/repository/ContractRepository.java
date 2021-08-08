@@ -11,6 +11,8 @@ import java.util.List;
 public interface ContractRepository extends JpaRepository<Contract, Integer> {
     Page<Contract> findAllByIsDelete(int isDelete, Pageable pageable);
     List<Contract> findAllByIsDelete(int isDetele);
+    Page<Contract> findAllByContractEndDateContaining(String s, Pageable pageable);
+
 
 
 }

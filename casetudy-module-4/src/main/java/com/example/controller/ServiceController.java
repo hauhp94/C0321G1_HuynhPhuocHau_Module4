@@ -14,13 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -63,5 +62,38 @@ public class ServiceController {
             redirectAttributes.addFlashAttribute("message", "create success, service: " + service.getServiceName());
             return "redirect:/service/create";
         }
+    }
+    @GetMapping("/edit/{id}")
+    public ModelAndView showEditPage(@PathVariable int id, Model model) throws SQLException {
+        List<ServiceType> serviceTypeList = serviceTypeService.findAll();
+        List<RentType> rentTypeList = rentTypeService.findAll();
+        model.addAttribute("serviceTypeList", serviceTypeList);
+        model.addAttribute("rentTypeList", rentTypeList);
+        ModelAndView modelAndView = new ModelAndView("furama/service/edit", "serviceDto", serviceService.findById(id));
+        return modelAndView;
+    }
+    @PostMapping("/edit")
+    public String editService(@Valid @ModelAttribute ServiceDto serviceDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws SQLException {
+        new ServiceDto().validate(serviceDto, bindingResult);
+        if (bindingResult.hasFieldErrors()) {
+            List<ServiceType> serviceTypeList = serviceTypeService.findAll();
+            List<RentType> rentTypeList = rentTypeService.findAll();
+            model.addAttribute("serviceTypeList", serviceTypeList);
+            model.addAttribute("rentTypeList", rentTypeList);
+            return "/furama/service/edit";
+        } else {
+            Service service = new Service();
+            BeanUtils.copyProperties(serviceDto, service);
+            serviceService.save(service);
+            redirectAttributes.addFlashAttribute("message", "update success, service id: " +service.getServiceId());
+            return "redirect:/customer-service/list";
+        }
+    }
+    @PostMapping("/delete")
+    public String deleteService(@RequestParam int idServiceDelete, RedirectAttributes redirectAttributes) throws SQLException {
+        String name = serviceService.findById(idServiceDelete).getServiceName();
+        serviceService.remove(idServiceDelete);
+        redirectAttributes.addFlashAttribute("message", "delete success customer "+name);
+        return "redirect:/customer-service/list";
     }
 }

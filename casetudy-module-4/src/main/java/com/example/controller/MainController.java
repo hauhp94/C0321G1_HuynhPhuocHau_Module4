@@ -12,13 +12,13 @@ import java.security.Principal;
 
 @Controller
 public class MainController {
-    @RequestMapping("home")
+    @RequestMapping(value = {"home",""})
     public String goHome(){
         return "home";
     }
 
 
-    @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/welcome" }, method = RequestMethod.GET)
     public String welcomePage(Model model) {
         model.addAttribute("title", "Welcome");
         model.addAttribute("message", "This is welcome page!");

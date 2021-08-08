@@ -16,6 +16,13 @@
             <h2>Edit customer</h2>
             <form th:action="@{/employee/edit}" th:object="${employeeDto}" method="post">
                 <table class="table table-striped border-dark table-bordered">
+
+                    <tr>
+                        <td>ID:</td>
+                        <td>
+                            <input type="text" th:field="*{employeeId}" required class="form-control" readonly/>
+                        </td>
+                    </tr>
                     <tr>
                         <td>Tên nhân viên:</td>
                         <td><input type="text" th:field="*{employeeName}" class="form-control">

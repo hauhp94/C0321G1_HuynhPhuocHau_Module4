@@ -13,10 +13,10 @@ public interface CustomerService  {
 
     List<Customer> findAll();
     void save(Customer customer);
+    void update(int id, Customer customer);
 
     void remove(int id) throws SQLException;
 
-    void update(int id, Customer customer);
 
     Customer findById(int id);
 

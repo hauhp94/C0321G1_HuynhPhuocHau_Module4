@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit service</title>
+</head>
+<body>
+<div th:insert="~{/layout::head}"></div>
+<div th:insert="~{/layout::navbar}"></div>
+<div class="row container-fluid">
+    <div th:insert="~{/layout::sidebar}" class="col-lg-2 h-100"></div>
+    <!--    Nội dung-->
+    <div class=" h-100 col-lg-10">
+
+        <form th:action="@{/service/edit}" method="post" th:object="${serviceDto}">
+            <div th:if="${message}">
+                <h4 th:text="${message}" style="color: #1e7e34"></h4>
+            </div>
+            <h2>Edit Service</h2>
+            <table class="table table-striped border-dark table-bordered">
+                <tr>
+                    <td>ID:</td>
+                    <td>
+                        <input type="text" th:field="*{serviceId}" required class="form-control" readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tên dịch vụ:</td>
+                    <td>
+                        <input type="text" th:field="*{serviceName}"  class="form-control">
+                        <small th:if="${#fields.hasErrors('serviceName')}" th:errors="*{serviceName}"
+                               style="color: red"></small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mã dịch vụ:</td>
+                    <td><input type="text" th:field="*{serviceCode}" class="form-control">
+                        <small th:if="${#fields.hasErrors('serviceCode')}" th:errors="*{serviceCode}"
+                               style="color: red"></small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Diện tích sử dụng:</td>
+                    <td><input type="number" th:field="*{serviceArea}" class="form-control">
+                        <small th:if="${#fields.hasErrors('serviceArea')}" th:errors="*{serviceArea}"
+                               style="color: red"></small>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Chi phí thuê:</td>
+                    <td><input type="number" step="any" th:field="*{serviceCost}" class="form-control">
+                        <small th:if="${#fields.hasErrors('serviceCost')}" th:errors="*{serviceCost}"
+                               style="color: red"></small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Số người tối đa:</td>
+                    <td><input type="number" th:field="*{serviceMaxPeople}" class="form-control">
+                        <small th:if="${#fields.hasErrors('serviceMaxPeople')}" th:errors="*{serviceMaxPeople}"
+                               style="color: red"></small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Kiểu thuê:</td>
+                    <td>
+                        <select th:field="*{rentType}"  class="form-control">
+                            <option th:each="item:${rentTypeList}" th:text="${item.name}"
+                                    th:value="${item.id}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Loại dịch vụ:</td>
+                    <td>
+                        <select th:field="*{serviceType}" class="form-control">
+                            <option th:each="item:${serviceTypeList}" th:text="${item.name}"
+                                    th:value="${item.id}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiêu chuẩn phòng:</td>
+                    <td><input type="text" th:field="*{standardRoom}" class="form-control">
+                        <small th:if="${#fields.hasErrors('standardRoom')}" th:errors="*{standardRoom}"
+                               style="color: red"></small>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiện nghi khác:</td>
+                    <td>
+                        <input type="text" th:field="*{descriptionOtherConvenience}" class="form-control">
+                        <small th:if="${#fields.hasErrors('descriptionOtherConvenience')}"
+                               th:errors="*{descriptionOtherConvenience}"
+                               style="color: red"></small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Diện tích hồ bơi:</td>
+                    <td><input type="number" step="any" th:field="*{poolArea}" class="form-control">
+                        <small th:if="${#fields.hasErrors('poolArea')}" th:errors="*{poolArea}"
+                               style="color: red"></small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Số tầng:</td>
+                    <td><input type="number" step="any" th:field="*{numberOfFloors}" class="form-control">
+                        <small th:if="${#fields.hasErrors('numberOfFloors')}" th:errors="*{numberOfFloors}"
+                               style="color: red"></small>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Dịch vụ miễn phí đi kèm:</td>
+                    <td><input type="text" th:field="*{freeService}" class="form-control">
+                        <small th:if="${#fields.hasErrors('freeService')}" th:errors="*{freeService}"
+                               style="color: red"></small>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button class="btn btn-success" type="submit">Update</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+</div>
+<div th:insert="~{/layout::footer}">
+</div>
+</body>
+</html>
