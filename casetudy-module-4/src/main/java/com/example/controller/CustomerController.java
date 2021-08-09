@@ -75,10 +75,18 @@ public class CustomerController {
     }
 
     @PostMapping("/delete")
-    public String deleteCustomer(@RequestParam int idCustomerDelete, RedirectAttributes redirectAttributes) throws SQLException {
-        String name = customerService.findById(idCustomerDelete).getCustomerName();
-        customerService.remove(idCustomerDelete);
-        redirectAttributes.addFlashAttribute("message", "delete success customer "+name);
+    public String deleteCustomer(@RequestParam Optional<List<Integer>> listId, RedirectAttributes redirectAttributes) throws SQLException {
+        if(listId.isPresent()){
+            for (Integer id: listId.get()){
+                Customer customer = customerService.findById(id);
+                if (customer==null){
+                    return "error";
+                }
+                customer.setIsDelete(1);
+                customerService.save(customer);
+            }
+            redirectAttributes.addFlashAttribute("message","delete ok");
+        }
         return "redirect:/customer/list";
     }
 
