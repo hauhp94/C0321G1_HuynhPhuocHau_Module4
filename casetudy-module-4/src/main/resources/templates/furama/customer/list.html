@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Customer list</title>
@@ -35,8 +35,8 @@
                 <th>Phone number</th>
                 <th>Email</th>
                 <th>Address</th>
-                <th>Edit</th>
-                <th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">Edit</th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">
                     <button type="button" class="deleteCustomer btn-danger btn"
                             onclick="showModal()" data-toggle="modal" data-target="#exampleModal">
                         <i class="fas fa-trash-alt " title="Delete"></i>
@@ -54,19 +54,19 @@
                 <td th:text="${customer.customerType.name}"></td>
                 <td th:text="${customer.customerBirthday}"></td>
                 <td th:switch="${customer.customerGender}">
-                    <span th:case="0">FeMale</span>
-                    <span th:case="1">Male</span>
+                    <span th:case="0">female</span>
+                    <span th:case="1">male</span>
                 </td>
                 <td th:text="${customer.customerIdCard}"></td>
                 <td th:text="${customer.customerPhone}"></td>
                 <td th:text="${customer.customerEmail}"></td>
                 <td th:text="${customer.customerAddress}"></td>
-                <td>
+                <td sec:authorize="hasRole('ROLE_ADMIN')">
                     <a th:href="@{edit/{id}(id=${customer.customerId})}" class="btn-warning btn">
                         <i class="fas fa-user-edit " title="Edit"></i>
                     </a>
                 </td>
-                <td>
+                <td sec:authorize="hasRole('ROLE_ADMIN')">
                     <input type="checkbox" class="listId form-control" id="listId" name="listId" th:value="${customer.customerId}">
                 </td>
             </tr>

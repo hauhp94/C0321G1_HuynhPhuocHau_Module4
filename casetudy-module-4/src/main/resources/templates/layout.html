@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <title>Furama Resort</title>
     <link rel="stylesheet" type="text/css" href="/bootstrap4/css/bootstrap.css">
@@ -14,11 +14,10 @@
                 <li class="nav-item active">
                     <img src="/image/furama.jpg" height="50" width="70">
                 </li>
-
             </ul>
-            <ul class="navbar-nav mr-1">
-                <li class="nav-item">
-                    <p>Huỳnh Phước Hậu</p>
+            <ul class="navbar-nav mr-1" >
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    Hello <span sec:authentication="principal.username"></span>
                 </li>
             </ul>
         </div>
@@ -77,11 +76,20 @@
                     <a class="dropdown-item" href="/contract-detail/create">Add Contract Detail</a>
                 </div>
             </li>
-            <form class="form-inline my-2 my-lg-0" action="/customer/list" method="get">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search Customer" aria-label="Search"
-                       name="keyWord">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
-            </form>
+<!--            <form class="form-inline my-2 my-lg-0" action="/customer/list" method="get">-->
+<!--                <input class="form-control mr-sm-2" type="search" placeholder="Search Customer" aria-label="Search"-->
+<!--                       name="keyWord">-->
+<!--                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>-->
+<!--            </form>-->
+            <li class="nav-item active ">
+                <a class="nav-link font-weight-normal " href="/login">Login </a>
+            </li>
+            <li class="nav-item active ">
+                <a class="nav-link font-weight-normal " href="/logout">Logout </a>
+            </li>
+            <li class="nav-item active ">
+                <a class="nav-link font-weight-normal " > </a>
+            </li>
         </ul>
 
     </div>
