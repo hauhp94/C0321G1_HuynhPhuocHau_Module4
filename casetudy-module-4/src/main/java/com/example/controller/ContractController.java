@@ -63,6 +63,7 @@ public class ContractController {
         } else {
             Contract contract = new Contract();
             BeanUtils.copyProperties(contractDto, contract);
+            contract.setContractTotalMoney(contract.getService().serviceCost);
             contractService.save(contract);
             Customer customer = contractDto.getCustomer();
             customer.setServiceId(contractDto.getService().getServiceId());

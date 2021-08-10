@@ -60,11 +60,11 @@ public class ContractDetailController {
         } else {
             ContractDetail contractDetail = new ContractDetail();
             BeanUtils.copyProperties(contractDetailDto, contractDetail);
-            Customer customer = contractDetail.getContract().getCustomer();
-            customer.setContractDetailId(contractDetail.getId());
-            customer.setAttachServiceName(contractDetail.getAttachService().getName());
-            customer.setQuantity(contractDetail.getQuantity());
-            customerService.save(customer);
+            Contract contract = contractDetail.getContract();
+            Double totalMoney = contract.getContractTotalMoney();
+            totalMoney+=contractDetail.getQuantity()*contractDetail.getAttachService().getCost();
+            contract.setContractTotalMoney(totalMoney);
+            contractService.save(contract);
             contractDetailService.save(contractDetail);
             redirectAttributes.addFlashAttribute("message", "create success contract detail id: " + contractDetail.getId());
             return "redirect:/contract-detail/create";

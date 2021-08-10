@@ -44,6 +44,7 @@ public class CustomerServiceController {
         String key = "";
         if (keyWord.isPresent()) {
             contracts = contractService.findByContractEndDay(keyWord.get(), pageable);
+//            contracts = contractService.
             key = keyWord.get();
         }else {
             contracts = contractService.findAll(pageable);

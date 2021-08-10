@@ -42,7 +42,7 @@
 
                     <tr>
                         <td>Tổng tiền: </td>
-                        <td><input type="number" step="any" th:field="*{contractTotalMoney}"class="form-control">
+                        <td><input type="number" step="any" th:field="*{contractTotalMoney}"class="form-control" readonly>
                             <small th:if="${#fields.hasErrors('contractTotalMoney')}" th:errors="*{contractTotalMoney}"
                                    style="color: red"></small>
                         </td>

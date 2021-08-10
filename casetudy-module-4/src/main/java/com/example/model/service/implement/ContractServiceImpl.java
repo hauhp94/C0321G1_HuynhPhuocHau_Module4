@@ -1,6 +1,8 @@
 package com.example.model.service.implement;
 
+import com.example.model.entity.AttachService;
 import com.example.model.entity.Contract;
+import com.example.model.entity.ContractDetail;
 import com.example.model.repository.ContractRepository;
 import com.example.model.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +36,13 @@ public class ContractServiceImpl implements ContractService {
         return contractRepository.findAllByContractEndDateContaining(s, pageable);
     }
 
-
+//    @Override
+//    public Double getTotalMoney(Contract contract) {
+//        double serviceCost = contract.getService().getServiceCost();
+////        double attachServiceCost = 0;
+////        for (ContractDetail contractDetail : contract.getContractDetails()) {
+////            attachServiceCost += contractDetail.getQuantity() * contractDetail.getAttachService().getCost();
+////        }
+//        return serviceCost;
+//    }
 }
