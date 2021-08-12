@@ -22,10 +22,10 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-//@Component
+@Component
 public class CustomerDto implements Validator {
-//    @Autowired
-//    CustomerService customerService;
+    @Autowired
+    CustomerService customerService;
 
     private int customerId;
     @NotBlank

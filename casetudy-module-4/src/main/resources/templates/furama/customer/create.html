@@ -1,7 +1,9 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Add Customer</title>
-    <link rel="stylesheet prefetch" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
+    <link rel="stylesheet prefetch"
+          href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 </head>
 <body>
@@ -14,15 +16,14 @@
         <div class="align-content-center col-lg-10 ">
             <h2>Add new customer</h2>
             <form th:action="@{/customer/create}" th:object="${customerDto}" method="post">
-                <table class="table table-striped border-dark form-group table-bordered">
-                    <tr>
-                        <td>Tên khách hàng:</td>
-                        <td>
-                            <input type="text" th:field="*{customerName}" class="form-control"/>
-                            <small th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"
-                                   style="color: red"></small>
-                        </td>
-
+                <table class="table border-dark form-group table-bordered">
+                  <tr>
+                    <td>Tên khách hàng:</td>
+                    <td>
+                        <input type="text" th:field="*{customerName}" class="form-control">
+                        <small th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"
+                               style="color: red"></small>
+                    </td>
                     </tr>
                     <tr>
                         <td>Loại khách hàng:</td>
@@ -39,15 +40,18 @@
                             <input type="text" th:field="*{customerCode}" class="form-control">
                             <small th:if="${#fields.hasErrors('customerCode')}" th:errors="*{customerCode}"
                                    style="color: red"></small>
+                            <small th:if="${messageCode}" th:text="${messageCode}"
+                                   style="color: red"></small>
 
                         </td>
                     </tr>
                     <tr>
                         <td>Ngày sinh:</td>
                         <td>
-                            <input type="date" th:field="*{customerBirthday}" class="form-control" placeholder="dd/mm/yyyy">
-                        <small th:if="${#fields.hasErrors('customerBirthday')}" th:errors="*{customerBirthday}"
-                               style="color: red"></small>
+                            <input type="date" th:field="*{customerBirthday}" class="form-control"
+                                   placeholder="dd/mm/yyyy">
+                            <small th:if="${#fields.hasErrors('customerBirthday')}" th:errors="*{customerBirthday}"
+                                   style="color: red"></small>
 
                         </td>
 
@@ -55,8 +59,8 @@
                     <tr>
                         <td>Giới tính:</td>
                         <td>
-                            <input type="radio" th:field="*{customerGender}" value="0"/> female
-                            <input type="radio" th:field="*{customerGender}" value="1"/> male
+                            <input type="radio" th:field="*{customerGender}" value="0"/> Female
+                            <input type="radio" th:field="*{customerGender}" value="1"/> Male
                         </td>
                     </tr>
                     <tr>
@@ -95,16 +99,14 @@
                         <td>
                             <input type="text" th:field="*{customerAddress}"
                                    class="form-control">
-                        <small th:if="${#fields.hasErrors('customerAddress')}" th:errors="*{customerAddress}"
-                               style="color: red"></small>
+                            <small th:if="${#fields.hasErrors('customerAddress')}" th:errors="*{customerAddress}"
+                                   style="color: red"></small>
                         </td>
 
                     </tr>
                     <tr>
-                        <td>
+                        <td colspan="2" class="justify-content-center">
                             <button class="btn btn-success" type="submit">Save</button>
-                        </td>
-                        <td>
                             <button class="btn btn-secondary" type="reset">Reset</button>
                         </td>
                     </tr>

@@ -43,7 +43,7 @@
             </thead>
             <tbody>
             <tr th:each="employee,status:${employeeList}">
-                <td th:text="${status.count}"></td>
+                <td th:text="${status.count}+${employeeList.number}*${employeeList.numberOfElements}"></td>
                 <td th:text="${employee.employeeId}"></td>
                 <td th:text="${employee.employeeName}"></td>
                 <td th:text="${employee.employeeBirthday}"></td>

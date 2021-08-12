@@ -42,6 +42,12 @@ public class CustomerController {
 
     @PostMapping("/create")
     public String saveCustomer(@Valid @ModelAttribute CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws Exception {
+        if (customerService.isExistCustomerCode(customerDto.getCustomerCode())){
+            List<CustomerType> customerTypeList = customerTypeService.findAll();
+            model.addAttribute("customerTypeList", customerTypeList);
+            model.addAttribute("messageCode","Code is exist");
+            return "/furama/customer/create";
+        }
         new CustomerDto().validate(customerDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             List<CustomerType> customerTypeList = customerTypeService.findAll();
@@ -60,7 +66,7 @@ public class CustomerController {
     }
 
     @GetMapping("/list")
-    public String showCustomerList(@RequestParam("keyWord") Optional<String> keyWord, @PageableDefault(value = 5) Pageable pageable, Model model) {
+    public String showCustomerList(@RequestParam("keyWord") Optional<String> keyWord, @PageableDefault(value = 6) Pageable pageable, Model model) {
         Page<Customer> customers;
         String key = "";
         if (keyWord.isPresent()) {

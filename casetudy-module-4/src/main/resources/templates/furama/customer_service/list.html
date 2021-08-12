@@ -47,14 +47,14 @@
             </thead>
             <tbody>
             <tr th:each="contract,status:${contractList}">
-                <td th:text="${status.count}"></td>
+                <td th:text="${status.count}+${contractList.number}*${contractList.numberOfElements}"></td>
                 <td th:text="${contract.id}"></td>
                 <td th:text="${contract.contractEndDate}"></td>
                 <td th:text="${contract.customer.customerName}"></td>
                 <td th:text="${contract.customer.customerCode}"></td>
                 <td th:switch="${contract.customer.customerGender}">
-                    <span th:case="0">female</span>
-                    <span th:case="1">male</span>
+                    <span th:case="0">Female</span>
+                    <span th:case="1">Male</span>
                 </td>
                 <td th:text="${contract.service.serviceId}"></td>
                 <td th:text="${contract.service.serviceName}"></td>

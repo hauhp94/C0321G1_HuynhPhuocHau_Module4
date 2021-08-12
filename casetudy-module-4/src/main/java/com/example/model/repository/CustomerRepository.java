@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
-    @Query(value="select * from customer where concat(customer_name,customer_phone) like concat('%',:keyword,'%')",nativeQuery=true)
+    @Query(value="select * from customer where is_delete=0 and concat(customer_name,customer_phone) like %:keyword%",nativeQuery=true)
     Page<Customer> searchByNameOrPhone(String keyword,Pageable pageable);
 
     Page<Customer> findAllByIsDelete(int isDelete,Pageable pageable);

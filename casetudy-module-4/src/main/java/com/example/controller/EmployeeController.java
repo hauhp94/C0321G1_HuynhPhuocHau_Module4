@@ -75,7 +75,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/list")
-    public String showCustomerList(@RequestParam("keyWord") Optional<String> keyWord, @PageableDefault(value = 5) Pageable pageable, Model model) {
+    public String showCustomerList(@RequestParam("keyWord") Optional<String> keyWord, @PageableDefault(value = 6) Pageable pageable, Model model) {
         Page<Employee> employees;
         String key = "";
         if (keyWord.isPresent()) {
