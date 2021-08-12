@@ -47,7 +47,7 @@
             </thead>
             <tbody>
             <tr th:each="customer,status:${customerList}">
-                <td th:text="${status.count}+${customerList.number}*5"></td>
+                <td th:text="${status.count}+${customerList.number}*${customerList.numberOfElements}"></td>
                 <td th:text="${customer.customerId}"></td>
                 <td th:text="${customer.customerName}"></td>
                 <td th:text="${customer.customerCode}"></td>
