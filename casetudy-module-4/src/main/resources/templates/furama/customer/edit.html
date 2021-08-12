@@ -48,6 +48,8 @@
                                    class="form-control">
                             <small th:if="${#fields.hasErrors('customerCode')}" th:errors="*{customerCode}"
                                    style="color: red"></small>
+                            <small th:if="${messageCode}" th:text="${messageCode}"
+                                   style="color: red"></small>
 
                         </td>
                     </tr>

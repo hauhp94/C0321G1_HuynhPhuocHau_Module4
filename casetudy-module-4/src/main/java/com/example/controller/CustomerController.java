@@ -99,6 +99,12 @@ public class CustomerController {
 
     @PostMapping("/edit")
     public String editCustomer(@Valid @ModelAttribute CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws Exception {
+        if (customerService.isExistCustomerCode(customerDto.getCustomerCode())){
+            List<CustomerType> customerTypeList = customerTypeService.findAll();
+            model.addAttribute("customerTypeList", customerTypeList);
+            model.addAttribute("messageCode","Code is exist");
+            return "/furama/customer/edit";
+        }
         new CustomerDto().validate(customerDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             List<CustomerType> customerTypeList = customerTypeService.findAll();
