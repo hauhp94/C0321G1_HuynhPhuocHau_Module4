@@ -12,15 +12,15 @@ public interface CustomerService  {
     Page<Customer> findAllCustomerUseService(Pageable pageable);
 
     List<Customer> findAll();
-    void save(Customer customer);
+    void save(Customer customer) throws Exception;
     void update(int id, Customer customer);
 
     void remove(int id) throws SQLException;
-
 
     Customer findById(int id);
 
     Page<Customer> findByName(String name,Pageable pageable);
 
     List<Customer> findAllAndService();
+    boolean isExistCustomerCode(String code);
 }

@@ -1,25 +1,32 @@
 package com.example.dto;
 
-import com.example.model.entity.Contract;
 import com.example.model.entity.CustomerType;
+import com.example.model.repository.CustomerRepository;
+import com.example.model.service.CustomerService;
+import com.example.model.service.implement.CustomerServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import javax.persistence.*;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+//@Component
 public class CustomerDto implements Validator {
+//    @Autowired
+//    CustomerService customerService;
+
     private int customerId;
     @NotBlank
     private String customerCode;
@@ -79,5 +86,13 @@ public class CustomerDto implements Validator {
         if (!java.util.regex.Pattern.matches(patternPhone, customerDto.customerPhone)) {
             errors.rejectValue("customerPhone", "customerPhone.matches");
         }
+
+//        if (customerService.isExistCustomerCode(customerDto.customerCode)){
+//            errors.rejectValue("customerCode","customerCode.exist");
+//        }
+//        if (true){
+//            errors.rejectValue("customerCode","customerCode.exist");
+//        }
+
     }
 }

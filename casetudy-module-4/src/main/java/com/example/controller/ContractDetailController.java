@@ -15,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -36,6 +33,15 @@ public class ContractDetailController {
     @Autowired
     CustomerService customerService;
 
+    @GetMapping("/create/{id}")
+    public String createContractDetailWithId(@PathVariable int id,Model model) {
+        Contract contract = contractService.findById(id);
+        this.getSecondaryList(model);
+        ContractDetailDto contractDetailDto = new ContractDetailDto();
+        contractDetailDto.setContract(contract);
+        model.addAttribute("contractDetailDto", contractDetailDto);
+        return "/furama/contract_detail/create";
+    }
     @GetMapping("/create")
     public String createContractDetail(Model model) {
         this.getSecondaryList(model);
@@ -61,13 +67,13 @@ public class ContractDetailController {
             ContractDetail contractDetail = new ContractDetail();
             BeanUtils.copyProperties(contractDetailDto, contractDetail);
             Contract contract = contractDetail.getContract();
-            Double totalMoney = contract.getContractTotalMoney();
+            double totalMoney = contract.getContractTotalMoney();
             totalMoney+=contractDetail.getQuantity()*contractDetail.getAttachService().getCost();
             contract.setContractTotalMoney(totalMoney);
             contractService.save(contract);
             contractDetailService.save(contractDetail);
             redirectAttributes.addFlashAttribute("message", "create success contract detail id: " + contractDetail.getId());
-            return "redirect:/contract-detail/create";
+            return "redirect:/customer-service/list";
         }
     }
 

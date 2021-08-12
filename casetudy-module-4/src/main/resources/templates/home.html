@@ -53,6 +53,10 @@
         </div>
     </div>
 </div>
+<p sec:authorize="hasRole('ROLE_ADMIN')">đây là admin</p>
+<p sec:authorize="hasRole('ROLE_USER')">đây là user</p>
+
+
 <div th:insert="~{/layout::footer}">
 </div>
 </body>

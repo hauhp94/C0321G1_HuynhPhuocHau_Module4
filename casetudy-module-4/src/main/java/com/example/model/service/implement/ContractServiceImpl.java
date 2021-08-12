@@ -36,6 +36,11 @@ public class ContractServiceImpl implements ContractService {
         return contractRepository.findAllByContractEndDateContaining(s, pageable);
     }
 
+    @Override
+    public Contract findById(int id) {
+        return contractRepository.findById(id).get();
+    }
+
 //    @Override
 //    public Double getTotalMoney(Contract contract) {
 //        double serviceCost = contract.getService().getServiceCost();

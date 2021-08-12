@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void save(Customer customer) {
+    public void save(Customer customer) throws Exception {
         customerRepository.save(customer);
     }
 
@@ -61,5 +62,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> findAllAndService() {
         return null;
+    }
+
+    @Override
+    public boolean isExistCustomerCode(String code) {
+        return customerRepository.existsByCustomerCode(code);
     }
 }

@@ -69,7 +69,7 @@
                         <td>Dịch vụ: </td>
                         <td>
                             <select th:field="*{service}" class="form-control">
-                                <option th:each="item:${serviceList}" th:text="${item.serviceName}"
+                                <option th:each="item:${serviceList}" th:text="${item.serviceName}+' - '+${item.serviceCost}+' USD'"
                                         th:value="${item.serviceId}"></option>
                             </select>
                         </td>

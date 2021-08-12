@@ -12,4 +12,5 @@ public interface ContractService {
     Page<Contract> findAll(Pageable pageable);
 
     Page<Contract> findByContractEndDay(String s, Pageable pageable);
+    Contract findById(int id);
 }

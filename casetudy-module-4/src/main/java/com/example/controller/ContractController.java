@@ -55,7 +55,7 @@ public class ContractController {
 
     @PostMapping("/create")
     public String saveService(@Valid @ModelAttribute ContractDto contractDto,
-                              BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+                              BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws Exception {
         new ContractDto().validate(contractDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             this.getListSecondary(model);

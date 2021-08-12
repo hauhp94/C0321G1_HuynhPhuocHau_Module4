@@ -9,7 +9,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +33,7 @@ public class CustomerController {
 
     @GetMapping("/create")
     public String createCustomer(Model model) {
+        System.out.println("KET QUA KIEM TRA UNIQUE KH-0000"+customerService.isExistCustomerCode("KH-0000"));
         List<CustomerType> customerTypeList = customerTypeService.findAll();
         model.addAttribute("customerTypeList", customerTypeList);
         model.addAttribute("customerDto", new CustomerDto());
@@ -41,7 +41,7 @@ public class CustomerController {
     }
 
     @PostMapping("/create")
-    public String saveCustomer(@Valid @ModelAttribute CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+    public String saveCustomer(@Valid @ModelAttribute CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws Exception {
         new CustomerDto().validate(customerDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             List<CustomerType> customerTypeList = customerTypeService.findAll();
@@ -50,6 +50,7 @@ public class CustomerController {
         } else {
             Customer customer = new Customer();
             BeanUtils.copyProperties(customerDto, customer);
+            System.err.println("ket qua:------------------------------------------------------------ "+customerService.isExistCustomerCode(customer.getCustomerCode()));
             customerService.save(customer);
             redirectAttributes.addFlashAttribute("message", "create success, customer: " + customer.getCustomerName());
             return "redirect:/customer/list";
@@ -75,7 +76,7 @@ public class CustomerController {
     }
 
     @PostMapping("/delete")
-    public String deleteCustomer(@RequestParam Optional<List<Integer>> listId, RedirectAttributes redirectAttributes) throws SQLException {
+    public String deleteCustomer(@RequestParam Optional<List<Integer>> listId, RedirectAttributes redirectAttributes) throws Exception {
         if(listId.isPresent()){
             for (Integer id: listId.get()){
                 Customer customer = customerService.findById(id);
@@ -85,13 +86,13 @@ public class CustomerController {
                 customer.setIsDelete(1);
                 customerService.save(customer);
             }
-            redirectAttributes.addFlashAttribute("message","delete ok");
+            redirectAttributes.addFlashAttribute("message","deleted id: "+listId.get().toString());
         }
         return "redirect:/customer/list";
     }
 
     @PostMapping("/edit")
-    public String editCustomer(@Valid @ModelAttribute CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws SQLException {
+    public String editCustomer(@Valid @ModelAttribute CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws Exception {
         new CustomerDto().validate(customerDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             List<CustomerType> customerTypeList = customerTypeService.findAll();

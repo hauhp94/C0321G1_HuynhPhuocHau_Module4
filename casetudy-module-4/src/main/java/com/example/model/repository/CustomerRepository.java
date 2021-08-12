@@ -2,6 +2,7 @@ package com.example.model.repository;
 
 import com.example.model.entity.Contract;
 import com.example.model.entity.Customer;
+import com.sun.org.apache.xpath.internal.objects.XBoolean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,7 +17,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     Page<Customer> findAllByIsDelete(int isDelete,Pageable pageable);
     List<Customer> findAllByIsDelete(int isDetele);
     Page<Customer> findAllByIsDeleteAndServiceIdGreaterThan(int isDelete,int number,Pageable pageable);
-
+    boolean existsByCustomerCode(String code);
+    Customer findByCustomerCode(String code);
 
 
 

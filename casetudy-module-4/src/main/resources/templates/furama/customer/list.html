@@ -12,7 +12,7 @@
     <!--    Nội dung-->
     <div class=" h-100 col-lg-10">
         <div th:if="${message}">
-            <h4 th:text="${message}" style="color: #1e7e34"></h4>
+            <h4 th:text="${message}"  class="text-primary "></h4>
         </div>
         <form action="/customer/list" method="get" class="form-inline justify-content-center">
             <span class="m-1">Search Customer </span>
@@ -47,7 +47,7 @@
             </thead>
             <tbody>
             <tr th:each="customer,status:${customerList}">
-                <td th:text="${status.count}"></td>
+                <td th:text="${status.count}+${customerList.number}*5"></td>
                 <td th:text="${customer.customerId}"></td>
                 <td th:text="${customer.customerName}"></td>
                 <td th:text="${customer.customerCode}"></td>

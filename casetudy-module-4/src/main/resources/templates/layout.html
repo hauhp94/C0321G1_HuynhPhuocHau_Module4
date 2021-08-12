@@ -18,7 +18,12 @@
             <ul class="navbar-nav mr-1" >
                 <li class="nav-item" sec:authorize="isAuthenticated()">
                     Hello <span sec:authentication="principal.username"></span>
+<!--                    Hello <span sec:authentication="principal.pass"></span>-->
                 </li>
+<!--                <li class="nav-item" sec:authorize="!isAuthenticated()">-->
+<!--                   <span th:href="/login">Login</span>-->
+<!--                    &lt;!&ndash;                    Hello <span sec:authentication="principal.pass"></span>&ndash;&gt;-->
+<!--                </li>-->
             </ul>
         </div>
     </nav>
@@ -155,8 +160,8 @@
     <!-- Footer Elements -->
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2021 Copyright:
-        <p> Casetudy Module 4 </p>
+    <div class="footer-copyright text-center py-3 text-light" >© 2021 Copyright:
+        <p class="text-light"> Casetudy Module 4 </p>
     </div>
     <!-- Copyright -->
     <script src="/jquery/jquery-3.5.1.min.js"></script>
