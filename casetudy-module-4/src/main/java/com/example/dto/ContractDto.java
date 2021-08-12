@@ -12,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.util.Set;
@@ -42,7 +43,12 @@ public class ContractDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         ContractDto contractDto = (ContractDto) target;
+        System.err.println(contractDto.contractDeposit+" - deposit");
+        System.err.println(contractDto.contractTotalMoney+" - total");
 
+        if(contractDto.contractDeposit>contractDto.contractTotalMoney){
+            errors.rejectValue("contractDeposit", "contractDeposit.message");
+        }
 
     }
 }

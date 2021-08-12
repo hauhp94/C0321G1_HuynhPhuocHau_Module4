@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -17,74 +18,89 @@
             <div th:if="${message}">
                 <h4 th:text="${message}" style="color: #1e7e34"></h4>
             </div>
-                <table class="table table-striped border-dark table-bordered">
-                    <tr>
-                        <td>Ngày bắt đầu: </td>
-                        <td><input type="date"  th:field="*{contractStartDate}"class="form-control">
-                            <small th:if="${#fields.hasErrors('contractStartDate')}" th:errors="*{contractStartDate}"
-                                   style="color: red"></small>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Ngày kết thúc: </td>
-                        <td><input type="date" th:field="*{contractEndDate}"class="form-control">
-                            <small th:if="${#fields.hasErrors('contractEndDate')}" th:errors="*{contractEndDate}"
-                                   style="color: red"></small>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tiền đặt cọc: </td>
-                        <td><input type="number" step="any" th:field="*{contractDeposit}"class="form-control">
-                            <small th:if="${#fields.hasErrors('contractDeposit')}" th:errors="*{contractDeposit}"
-                                   style="color: red"></small>
-                        </td>
-                    </tr>
+            <table class="table table-striped border-dark table-bordered">
+                <tr>
+                    <td>Ngày bắt đầu:</td>
+                    <td><input type="date" th:field="*{contractStartDate}" class="form-control">
+                        <small th:if="${#fields.hasErrors('contractStartDate')}" th:errors="*{contractStartDate}"
+                               style="color: red"></small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ngày kết thúc:</td>
+                    <td><input type="date" th:field="*{contractEndDate}" class="form-control">
+                        <small th:if="${#fields.hasErrors('contractEndDate')}" th:errors="*{contractEndDate}"
+                               style="color: red"></small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiền đặt cọc:</td>
+                    <td><input type="number" step="any" th:field="*{contractDeposit}" class="form-control">
+                        <small th:if="${#fields.hasErrors('contractDeposit')}" th:errors="*{contractDeposit}"
+                               style="color: red"></small>
+                    </td>
+                </tr>
 
-<!--                    <tr>-->
-<!--                        <td>Tổng tiền: </td>-->
-<!--                        <td><input type="number" step="any" th:field="*{contractTotalMoney}"class="form-control" readonly>-->
-<!--                            <small th:if="${#fields.hasErrors('contractTotalMoney')}" th:errors="*{contractTotalMoney}"-->
-<!--                                   style="color: red"></small>-->
-<!--                        </td>-->
-<!--                    </tr>-->
-                    <tr>
-                        <td>Nhân viên làm hợp đồng: </td>
-                        <td>
-                            <select th:field="*{employee}" class="form-control">
-                                <option th:each="item:${employeeList}" th:text="${item.employeeName}+' - id: '+${item.employeeId}"
-                                        th:value="${item.employeeId}"></option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Khách hàng: </td>
-                        <td>
-                            <select th:field="*{customer}" class="form-control">
-                                <option th:each="item:${customerList}" th:text="${item.customerName}+' - customer code: '+${item.customerCode}"
-                                        th:value="${item.customerId}"></option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Dịch vụ: </td>
-                        <td>
-                            <select th:field="*{service}" class="form-control">
-                                <option th:each="item:${serviceList}" th:text="${item.serviceName}+' - '+${item.serviceCost}+' USD'"
-                                        th:value="${item.serviceId}"></option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td ><button class="btn btn-success" type="submit">Save</button> </td>
-                        <td>
-                            <button class="btn btn-secondary" type="reset">Reset</button>
-                        </td>
-                    </tr>
-                </table>
+                <tr>
+                    <td>Tổng tiền:</td>
+                    <td>
+                        <input id="totalMoney" type="number" step="any" th:field="*{contractTotalMoney}"
+                               class="form-control" readonly>
+                        <small th:if="${#fields.hasErrors('contractTotalMoney')}" th:errors="*{contractTotalMoney}"
+                               style="color: red"></small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nhân viên làm hợp đồng:</td>
+                    <td>
+                        <select th:field="*{employee}" class="form-control">
+                            <option th:each="item:${employeeList}"
+                                    th:text="${item.employeeName}+' - id: '+${item.employeeId}"
+                                    th:value="${item.employeeId}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Khách hàng:</td>
+                    <td>
+                        <select th:field="*{customer}" class="form-control">
+                            <option th:each="item:${customerList}"
+                                    th:text="${item.customerName}+' - customer code: '+${item.customerCode}"
+                                    th:value="${item.customerId}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Dịch vụ:</td>
+                    <td>
+                        <select th:field="*{service}" class="form-control" onchange="setTotalMoney()" id="mySelect">
+                            <option th:each="item:${serviceList}"
+                                    th:text="${item.serviceName}+' - '+${item.serviceCost}+' USD'"
+                                    th:value="${item.serviceId}" th:data-gia="${item.serviceCost}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="btn btn-success" type="submit">Save</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-secondary" type="reset">Reset</button>
+                    </td>
+                </tr>
+            </table>
         </form>
-</div>
+    </div>
 </div>
 <div th:insert="~{/layout::footer}">
 </div>
+<script>
+    function setTotalMoney() {
+        let cost = document.getElementById("mySelect")
+        let a = cost.options[cost.selectedIndex].getAttribute("data-gia")
+        document.getElementById("totalMoney").value = a;
+        console.log(a + " gia cua service vua chon")
+    }
+</script>
 </body>
 </html>
