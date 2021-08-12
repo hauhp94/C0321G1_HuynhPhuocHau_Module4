@@ -22,6 +22,32 @@ values ('Sale marketing'),
  values ('villa'),('house'), ('room');
  insert into customer_type(name)
  values ('Diamond'),('Platinium'),('Gold'),('Silver'),('Member');
+ insert into attach_service(cost,name,status,unit) values
+(200,'massage','avaiable',1),(300,'karaoke','avaiable',1),(100,'Food','avaiable',1),(50,'Water','avaiable',1),
+(600,'Rent car','avaiable',1);
+  insert into app_user (username,password) values ( 'dbuser1', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu');
+insert into app_user  (username,password) values ( 'dbadmin1', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu');
+insert into app_user  (username,password) values ( 'hauadmin', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu');
+
+
+insert into app_role (id, name) values (1, 'ROLE_ADMIN');
+
+insert into app_role (id, name) values (2, 'ROLE_USER');
+
+insert into user_role (role_id,username) values ( 2, 1);
+
+insert into user_role (role_id,username) values ( 1, 2);
+
+insert into user_role (role_id,username) values ( 2, 2);
+insert into user_role (role_id,username) values ( 1, 3);
+
+insert into user_role (role_id,username) values ( 2, 3);
+
+
+
+ insert into customer ( customer_address, customer_birthday,
+ customer_code, customer_email, customer_gender, customer_id_card,
+ customer_name, customer_phone, customer_type_id) value('da nang','1990-01-01','kh-1231','hph@gmail.com',1,'123123123','Hau','345345345',2);
 select * from nhan_vien;
 insert into nhan_vien(ho_ten,id_vi_tri,id_trinh_do,id_bo_phan,ngay_sinh,so_cmnd,luong,sdt,dia_chi)
 values('Đặng Văn Lâm', 1,1,1,'1950-03-16', 666555444, 12000.0, 0905123345,'Quảng Trị'),
@@ -79,3 +105,4 @@ values('Đặng Văn Lâm', 1,1,1,'1950-03-16', 666555444, 12000.0, 0905123345,'
  (9,3,5,'2019-12-12','2022-03-01',4500000,null);
  insert into hop_dong_chi_tiet(id_hop_dong ,id_dich_vu_di_kem ,so_luong )
  values(2,1,1),(1,2,3),(1,2,3),(1,2,2),(3,2,3),(4,2,5),(5,1,3),(6,4,3),(7,4,3),(8,2,3),(8,3,3),(9,5,1),(10,5,2),(11,2,1),(12,1,1),(13,2,3),(14,3,3);
+ use furama_module4;

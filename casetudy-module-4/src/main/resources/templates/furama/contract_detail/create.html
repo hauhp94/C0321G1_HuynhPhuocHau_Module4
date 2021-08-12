@@ -23,7 +23,7 @@
                     <td>ID Hợp đồng:</td>
 
                     <td>
-                        <select th:field="*{contract}" class="form-control">
+                        <select th:field="*{contract}" class="form-control" readonly>
                             <option th:each="item:${contractList}" th:text="${item.id}+' - Customer: '+${item.customer.customerName}"
                                     th:value="${item.id}"></option>
                         </select>

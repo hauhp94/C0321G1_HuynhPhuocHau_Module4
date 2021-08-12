@@ -42,12 +42,12 @@ public class ContractDetailController {
         model.addAttribute("contractDetailDto", contractDetailDto);
         return "/furama/contract_detail/create";
     }
-    @GetMapping("/create")
-    public String createContractDetail(Model model) {
-        this.getSecondaryList(model);
-        model.addAttribute("contractDetailDto", new ContractDetailDto());
-        return "/furama/contract_detail/create";
-    }
+//    @GetMapping("/create")
+//    public String createContractDetail(Model model) {
+//        this.getSecondaryList(model);
+//        model.addAttribute("contractDetailDto", new ContractDetailDto());
+//        return "/furama/contract_detail/create";
+//    }
 
     private void getSecondaryList(Model model) {
         List<Contract> contractList = contractService.findAll();

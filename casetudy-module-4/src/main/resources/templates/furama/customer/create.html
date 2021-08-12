@@ -48,8 +48,7 @@
                     <tr>
                         <td>Ngày sinh:</td>
                         <td>
-                            <input type="date" th:field="*{customerBirthday}" class="form-control"
-                                   placeholder="dd/mm/yyyy">
+                            <input type="date" th:field="*{customerBirthday}" class="form-control">
                             <small th:if="${#fields.hasErrors('customerBirthday')}" th:errors="*{customerBirthday}"
                                    style="color: red"></small>
 

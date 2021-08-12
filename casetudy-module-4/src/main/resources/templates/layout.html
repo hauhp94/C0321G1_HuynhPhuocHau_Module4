@@ -76,9 +76,9 @@
                     Contract
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/service/create">Contract list</a>
+<!--                    <a class="dropdown-item" href="/service/create">Contract list</a>-->
                     <a class="dropdown-item" href="/contract/create">Add Contract</a>
-                    <a class="dropdown-item" href="/contract-detail/create">Add Contract Detail</a>
+<!--                    <a class="dropdown-item" href="/contract-detail/create">Add Contract Detail</a>-->
                 </div>
             </li>
 <!--            <form class="form-inline my-2 my-lg-0" action="/customer/list" method="get">-->
@@ -104,10 +104,12 @@
 <div th:fragment="sidebar" class=" bg-light list-group" style="height: auto" >
     <a href="/customer/create" class="list-group-item list-group-item-action list-group-item-primary ">Create new customer
         </a>
+    <a href="/customer/list" class="list-group-item list-group-item-action list-group-item-primary ">Customer list
+    </a>
     <a href="/service/create" class="list-group-item list-group-item-action list-group-item-success ">Create service</a>
     <a href="/contract/create" class="list-group-item list-group-item-action list-group-item-secondary ">Create contract
     </a>
-    <a href="/contract-detail/create" class="list-group-item list-group-item-action list-group-item-secondary ">Create contract detail
+    <a href="/customer-service/list" class="list-group-item list-group-item-action list-group-item-secondary ">Customer using service
         </a>
 </div>
 

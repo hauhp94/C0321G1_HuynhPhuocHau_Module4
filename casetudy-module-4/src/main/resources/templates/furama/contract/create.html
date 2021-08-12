@@ -40,18 +40,18 @@
                         </td>
                     </tr>
 
-                    <tr>
-                        <td>Tổng tiền: </td>
-                        <td><input type="number" step="any" th:field="*{contractTotalMoney}"class="form-control" readonly>
-                            <small th:if="${#fields.hasErrors('contractTotalMoney')}" th:errors="*{contractTotalMoney}"
-                                   style="color: red"></small>
-                        </td>
-                    </tr>
+<!--                    <tr>-->
+<!--                        <td>Tổng tiền: </td>-->
+<!--                        <td><input type="number" step="any" th:field="*{contractTotalMoney}"class="form-control" readonly>-->
+<!--                            <small th:if="${#fields.hasErrors('contractTotalMoney')}" th:errors="*{contractTotalMoney}"-->
+<!--                                   style="color: red"></small>-->
+<!--                        </td>-->
+<!--                    </tr>-->
                     <tr>
                         <td>Nhân viên làm hợp đồng: </td>
                         <td>
                             <select th:field="*{employee}" class="form-control">
-                                <option th:each="item:${employeeList}" th:text="${item.employeeName}"
+                                <option th:each="item:${employeeList}" th:text="${item.employeeName}+' - id: '+${item.employeeId}"
                                         th:value="${item.employeeId}"></option>
                             </select>
                         </td>
@@ -60,7 +60,7 @@
                         <td>Khách hàng: </td>
                         <td>
                             <select th:field="*{customer}" class="form-control">
-                                <option th:each="item:${customerList}" th:text="${item.customerName}"
+                                <option th:each="item:${customerList}" th:text="${item.customerName}+' - customer code: '+${item.customerCode}"
                                         th:value="${item.customerId}"></option>
                             </select>
                         </td>
